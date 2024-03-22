@@ -6,7 +6,9 @@ public class PlayerScpt : MonoBehaviour
 {
     #region Values
 
-    [SerializeField] int speed;
+    [SerializeField] int acelleration, maxSpeed;
+    public int Aceleration => acelleration;
+    public int MaxSpeed => maxSpeed;
 
     #endregion
 
