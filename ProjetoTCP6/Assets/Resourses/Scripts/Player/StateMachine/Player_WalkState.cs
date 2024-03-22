@@ -11,11 +11,11 @@ public class Player_WalkState : PlayerBaseState
 
     public void FixedState(PlayerScpt player, PlayerStateController stateController)
     {
-        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
 
         player.PlayerRB.AddForce(direction * Time.deltaTime * player.Aceleration, ForceMode.VelocityChange);
 
-        if (direction != Vector3.zero || player.PlayerRB.velocity.magnitude > player.MaxSpeed)
+        if (direction == Vector3.zero || player.PlayerRB.velocity.magnitude > player.MaxSpeed)
             player.PlayerRB.velocity *= 0.8f;
     }
 

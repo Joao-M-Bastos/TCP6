@@ -22,8 +22,6 @@ public class PlayerScpt : MonoBehaviour
 
     #endregion
 
-    
-
     private void Awake()
     {
         playerRB = GetComponent<Rigidbody>();
