@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player_WalkState : PlayerBaseState
@@ -11,12 +13,24 @@ public class Player_WalkState : PlayerBaseState
 
     public void FixedState(PlayerScpt player, PlayerStateController stateController)
     {
-        Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
+        Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0).normalized;
 
+        Walk(player, stateController, direction);
+    }
+
+    private void Walk(PlayerScpt player, PlayerStateController stateController, Vector3 direction)
+    {
         player.PlayerRB.AddForce(direction * Time.deltaTime * player.Aceleration, ForceMode.VelocityChange);
 
         if (direction == Vector3.zero || player.PlayerRB.velocity.magnitude > player.MaxSpeed)
             player.PlayerRB.velocity *= 0.8f;
+
+        Vector3 input = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 playerPosition = player.transform.position;
+
+        player.transform.LookAt(new Vector3(input.x, input.y, playerPosition.z));
+
+        player.transform.position += player.transform.forward * Time.deltaTime;
     }
 
     public void StartState(PlayerScpt player, PlayerStateController stateController)
