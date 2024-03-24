@@ -13,7 +13,7 @@ public class Player_WalkState : PlayerBaseState
 
     public void FixedState(PlayerScpt player, PlayerStateController stateController)
     {
-        Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0).normalized;
+        Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
 
         Walk(player, stateController, direction);
     }
@@ -28,9 +28,7 @@ public class Player_WalkState : PlayerBaseState
         Vector3 input = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 playerPosition = player.transform.position;
 
-        player.transform.LookAt(new Vector3(input.x, input.y, playerPosition.z));
-
-        player.transform.position += player.transform.forward * Time.deltaTime;
+        player.transform.LookAt(new Vector3(input.x, playerPosition.y, input.z + 4));
     }
 
     public void StartState(PlayerScpt player, PlayerStateController stateController)
