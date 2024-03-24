@@ -13,13 +13,14 @@ public class Player_WalkState : PlayerBaseState
 
     public void FixedState(PlayerScpt player, PlayerStateController stateController)
     {
-        Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
-
-        Walk(player, stateController, direction);
+        Walk(player, stateController);
     }
 
-    private void Walk(PlayerScpt player, PlayerStateController stateController, Vector3 direction)
+    private void Walk(PlayerScpt player, PlayerStateController stateController)
     {
+        Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+
+
         player.PlayerRB.AddForce(direction * Time.deltaTime * player.Aceleration, ForceMode.VelocityChange);
 
         if (direction == Vector3.zero || player.PlayerRB.velocity.magnitude > player.MaxSpeed)
@@ -38,6 +39,9 @@ public class Player_WalkState : PlayerBaseState
 
     public void UpdateState(PlayerScpt player, PlayerStateController stateController)
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            player.RightHand.ActivateSword();
+        }
     }
 }

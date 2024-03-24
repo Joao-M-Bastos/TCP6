@@ -14,7 +14,7 @@ public class PlayerStateController : MonoBehaviour
         player = GetComponent<PlayerScpt>();
     }
 
-    // Start is called before the first frame update
+
     void Start()
     {
         currentState = walkState;
@@ -30,7 +30,7 @@ public class PlayerStateController : MonoBehaviour
         currentState.StartState(player, this);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         currentState.UpdateState(player, this);

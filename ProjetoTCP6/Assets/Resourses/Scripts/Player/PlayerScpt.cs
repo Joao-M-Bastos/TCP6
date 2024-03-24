@@ -7,6 +7,7 @@ public class PlayerScpt : MonoBehaviour
     #region Values
 
     [SerializeField] int acelleration, maxSpeed;
+    [SerializeField] int baseLife, currentLife;
     public int Aceleration => acelleration;
     public int MaxSpeed => maxSpeed;
 
@@ -15,16 +16,20 @@ public class PlayerScpt : MonoBehaviour
     #region Instaces
 
     Rigidbody playerRB;
+    RightHand rightHand;
 
 
     //Ponteiros
     public Rigidbody PlayerRB => playerRB;
+    public RightHand RightHand => rightHand;
 
     #endregion
 
     private void Awake()
     {
         playerRB = GetComponent<Rigidbody>();
+        rightHand = GetComponentInChildren<RightHand>();
+        currentLife = baseLife;
     }
     // Start is called before the first frame update
     void Start()
@@ -36,5 +41,10 @@ public class PlayerScpt : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void TakeAHit(int value)
+    {
+        currentLife -= value;
     }
 }
