@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class BaseWeapon : MonoBehaviour
 {
     [SerializeField] float baseCooldown;
-    [SerializeField] int baseSize;
+    [SerializeField] int baseDamage, baseSize;
     [SerializeField] GameObject boxCollider;
     float cooldownReductionPercentage = 100, currentCooldown;
     int size;
@@ -36,7 +36,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
         GameObject currentBox = Instantiate(boxCollider, boxStartPoint.transform);
         currentBox.transform.position = trueStartPoint;
-        currentBox.GetComponent<DamageCollider>().SetCooldown(0.2f);
+        currentBox.GetComponent<DamageCollider>().SetCollider(0.2f, baseDamage);
         currentCooldown = baseCooldown;
     }
 
