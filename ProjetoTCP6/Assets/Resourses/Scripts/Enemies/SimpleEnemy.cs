@@ -12,6 +12,10 @@ public class SimpleEnemy : BaseEnemy
     private void Update()
     {
         MoveFoward();
+        if(IsCooldownZero() && IsThisClose(attackDistance))
+        {
+            Attack();
+        }
     }
     public override void OnDie()
     {
@@ -21,5 +25,10 @@ public class SimpleEnemy : BaseEnemy
     public override void SpecialMove()
     {
         //row new System.NotImplementedException();
+    }
+
+    public override void Attack()
+    {
+        ActiveAttackCollider();
     }
 }

@@ -31,17 +31,6 @@ public class PlayerScpt : MonoBehaviour
         rightHand = GetComponentInChildren<RightHand>();
         currentLife = baseLife;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void TakeAHit(int value)
     {

@@ -6,6 +6,7 @@ using static BaseWeapon;
 public class DamageCollider : MonoBehaviour
 {
     float cooldown;
+    int damage;
 
     private void Update()
     {
@@ -23,13 +24,14 @@ public class DamageCollider : MonoBehaviour
     {
         if (other.TryGetComponent(out BaseEnemy enemy))
         {
-            enemy.KillEnemy();
+            enemy.TakeHit(damage);
         }
     }
 
-    public void SetCooldown(float value)
+    public void SetCollider(float _cooldown, int _damage)
     {
-        cooldown = value;
+        cooldown = _cooldown;
+        damage = _damage;
     }
 
 }
