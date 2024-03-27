@@ -1,33 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RightHand : MonoBehaviour
 {
     [SerializeField] Transform boxStartPoint;
-    [SerializeField] BaseWeapon currentSword;
+    [SerializeField] BaseWeapon currentWeapon;
+
+    GameObject currentWeaponObj;
+
     // Start is called before the first frame update
     void Start()
     {
-
-            SetSword(1);
+        SetSword(0);
     }
 
     public void SetSword(int id, string name = "")
     {
+        if(currentWeaponObj != null)
+            Destroy(currentWeaponObj);
+
+        if (id >= 0)
+            currentWeapon = ListOfItems.GetSwordById(0).GetComponent<BaseWeapon>();
+        else
+            currentWeapon = ListOfItems.GetSwordByName(name).GetComponent<BaseWeapon>();
+
         SetNewStatus();
 
-        Instantiate(currentSword.gameObject, this.transform);
+        currentWeaponObj = Instantiate(currentWeapon.gameObject, this.transform);
     }
 
     private void SetNewStatus()
     {
-        currentSword.SetSwordStatus(boxStartPoint);
+        currentWeapon.SetSwordStatus(boxStartPoint);
     }
 
     public void ActivateSword()
     {
-        currentSword.ActivateSword();
+        currentWeapon.ActivateSword();
     }
 
 

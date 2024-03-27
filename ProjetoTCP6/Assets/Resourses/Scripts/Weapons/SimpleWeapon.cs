@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SimpleWeapon : BaseWeapon
 {
+    private void Update()
+    {
+        ReduceTimer();
+    }
+
     public override void HitOtherCallback()
     {
         //throw new System.NotImplementedException();

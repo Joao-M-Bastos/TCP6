@@ -7,7 +7,7 @@ public abstract class BaseWeapon : MonoBehaviour
     [SerializeField] float baseCooldown;
     [SerializeField] int baseDamage, baseSize;
     [SerializeField] GameObject boxCollider;
-    float cooldownReductionPercentage = 100, currentCooldown;
+    float cooldownReductionPercentage = 100, currentCooldown = 0;
     int size;
     float currentSize;
     Transform boxStartPoint;
@@ -16,20 +16,23 @@ public abstract class BaseWeapon : MonoBehaviour
     {
         boxStartPoint = _raycastStartPoint;
     }
-
-    private void Update()
+    protected void ReduceTimer()
     {
         if (currentCooldown > 0)
         {
+            Debug.Log("S");
             currentCooldown -= Time.deltaTime * (cooldownReductionPercentage / 100);
         }
     }
+
     public void ActivateSword()
     {
         if (currentCooldown > 0)
         {
+            Debug.Log("B");
             return;
         }
+
         currentSize = size;
 
         Vector3 trueStartPoint = boxStartPoint.transform.position + boxStartPoint.transform.forward * (size / 2);

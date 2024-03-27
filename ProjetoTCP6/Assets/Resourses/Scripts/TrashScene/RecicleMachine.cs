@@ -9,18 +9,18 @@ public class RecicleMachine : MonoBehaviour
 
     PlayerScpt player;
 
-    [SerializeField]int currrentAmount;
+    [SerializeField]int currentAmount;
 
     private void Start()
     {
-        player = GetComponent<PlayerScpt>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScpt>();
     }
 
     public void AddCorpse()
     {
-        currrentAmount++;
+        currentAmount++;
 
-        if(currrentAmount >= amountToComplete)
+        if(currentAmount >= amountToComplete)
         {
 
         }
@@ -28,10 +28,9 @@ public class RecicleMachine : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("A");
+        Debug.Log(other.name);
         if(other.gameObject.name == IsTrashType(other.gameObject))
         {
-            Debug.Log("b");
             AddCorpse();
         }
     }
@@ -40,7 +39,7 @@ public class RecicleMachine : MonoBehaviour
     {
         if (other.name == IsTrashType(other.gameObject))
         {
-            currrentAmount--;
+            currentAmount--;
         }
     }
 
@@ -51,7 +50,7 @@ public class RecicleMachine : MonoBehaviour
         switch (trashType)
         {
             case 0:
-                correctName = "Corpse_PaperTrash";
+                correctName = "Corpse_PaperTrash(Clone)";
                 break;
         }
 
