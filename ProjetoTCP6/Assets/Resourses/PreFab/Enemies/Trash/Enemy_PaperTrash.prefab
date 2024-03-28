@@ -251,7 +251,7 @@ MonoBehaviour:
   damage: 1
   speed: 2
   viewDistance: 10
-  attackDistance: 1
+  attackDistance: 1.2
   baseAttackCooldown: 1
   attackAreaCollider: {fileID: 449656441798027161}
   trashCorpse: {fileID: 8645667281827114127, guid: 91befce94085b91428ca8e8f73f4aa24,

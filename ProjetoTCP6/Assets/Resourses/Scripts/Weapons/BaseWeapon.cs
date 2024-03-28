@@ -1,13 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class BaseWeapon : MonoBehaviour
 {
-    [SerializeField] float baseCooldown;
+    [SerializeField] protected float baseCooldown;
     [SerializeField] int baseDamage, baseSize;
     [SerializeField] GameObject boxCollider;
-    float cooldownReductionPercentage = 100, currentCooldown = 0;
+    protected float cooldownReductionPercentage = 100, currentCooldown;
     int size;
     float currentSize;
     Transform boxStartPoint;
@@ -16,23 +17,19 @@ public abstract class BaseWeapon : MonoBehaviour
     {
         boxStartPoint = _raycastStartPoint;
     }
-    protected void ReduceTimer()
+
+    public void ReduceTimer()
     {
         if (currentCooldown > 0)
         {
-            Debug.Log("S");
             currentCooldown -= Time.deltaTime * (cooldownReductionPercentage / 100);
         }
     }
 
-    public void ActivateSword()
-    {
-        if (currentCooldown > 0)
-        {
-            Debug.Log("B");
-            return;
-        }
+    public abstract void ActivateSword();
 
+    public void ActivateCollider()
+    {
         currentSize = size;
 
         Vector3 trueStartPoint = boxStartPoint.transform.position + boxStartPoint.transform.forward * (size / 2);
@@ -40,10 +37,13 @@ public abstract class BaseWeapon : MonoBehaviour
         GameObject currentBox = Instantiate(boxCollider, boxStartPoint.transform);
         currentBox.transform.position = trueStartPoint;
         currentBox.GetComponent<DamageCollider>().SetCollider(0.2f, baseDamage);
+
         currentCooldown = baseCooldown;
     }
 
     public abstract void SpecialEffect();
 
     public abstract void HitOtherCallback();
+
+    public abstract void UpdateFrame();
 }

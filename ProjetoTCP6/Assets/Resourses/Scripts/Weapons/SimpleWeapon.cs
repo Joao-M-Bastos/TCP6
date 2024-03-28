@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class SimpleWeapon : BaseWeapon
 {
-    private void Update()
+    public override void ActivateSword()
     {
-        ReduceTimer();
+        if (currentCooldown <= 0)
+        {
+            ActivateCollider();
+        }
     }
 
     public override void HitOtherCallback()
@@ -17,5 +20,10 @@ public class SimpleWeapon : BaseWeapon
     public override void SpecialEffect()
     {
         //throw new System.NotImplementedException();
+    }
+
+    public override void UpdateFrame()
+    {
+        ReduceTimer();
     }
 }

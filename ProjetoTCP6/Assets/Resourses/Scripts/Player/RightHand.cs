@@ -16,13 +16,18 @@ public class RightHand : MonoBehaviour
         SetSword(0);
     }
 
+    private void Update()
+    {
+        currentWeapon.UpdateFrame();
+    }
+
     public void SetSword(int id, string name = "")
     {
         if(currentWeaponObj != null)
             Destroy(currentWeaponObj);
 
         if (id >= 0)
-            currentWeapon = ListOfItems.GetSwordById(0).GetComponent<BaseWeapon>();
+            currentWeapon = ListOfItems.GetSwordById(id).GetComponent<BaseWeapon>();
         else
             currentWeapon = ListOfItems.GetSwordByName(name).GetComponent<BaseWeapon>();
 

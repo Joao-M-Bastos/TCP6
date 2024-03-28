@@ -10,7 +10,7 @@ public class PaperEnemy : TrashEnemy
     }
     private void Update()
     {
-        if (IsThisClose(attackDistance) && IsCooldownZero())
+        if (IsThisClose(attackDistance))
             Attack();
         else if(IsThisClose(viewDistance))
             MoveFoward();
@@ -18,7 +18,8 @@ public class PaperEnemy : TrashEnemy
     }
     public override void Attack()
     {
-        ActiveAttackCollider();
+        if(IsCooldownZero())
+            ActiveAttackCollider();
     }
 
     public override void OnDie()

@@ -5,7 +5,7 @@ using UnityEngine;
 public class RecicleMachine : MonoBehaviour
 {
     [SerializeField] int trashType, amountToComplete;
-    [SerializeField] GameObject objectWhenCompleted;
+    [SerializeField] int objectWhenCompleted;
 
     PlayerScpt player;
 
@@ -22,14 +22,13 @@ public class RecicleMachine : MonoBehaviour
 
         if(currentAmount >= amountToComplete)
         {
-
+            player.RightHand.SetSword(objectWhenCompleted);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
-        if(other.gameObject.name == IsTrashType(other.gameObject))
+        if(other.name.Contains(IsTrashType()))
         {
             AddCorpse();
         }
@@ -37,20 +36,20 @@ public class RecicleMachine : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.name == IsTrashType(other.gameObject))
+        if (other.name.Contains(IsTrashType()))
         {
             currentAmount--;
         }
     }
 
-    private string IsTrashType(GameObject trash)
+    private string IsTrashType()
     {
         string correctName = "";
 
         switch (trashType)
         {
             case 0:
-                correctName = "Corpse_PaperTrash(Clone)";
+                correctName = "Corpse_PaperTrash";
                 break;
         }
 
