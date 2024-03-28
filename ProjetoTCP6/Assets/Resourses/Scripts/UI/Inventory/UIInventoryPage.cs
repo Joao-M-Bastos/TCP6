@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,8 +19,40 @@ public class UIInventoryPage : MonoBehaviour
             uiItem.transform.localScale = new Vector3(1, 1, 1);
 
 
+
             listOfUIItems.Add(uiItem);
+
+            uiItem.OnItemClicked += HandleItemSelection;
+            uiItem.OnItemBeginDrag += HandleBeginDrag;
+            uiItem.OnItemDroped += HandleSwap;
+            uiItem.OnItemEndDrag += HandleEndDrag;
+            uiItem.OnRightMouseBtnClick += HandleShowItemActions;
         }
+    }
+
+    private void HandleShowItemActions(UIInventoryItem item)
+    {
+
+    }
+
+    private void HandleEndDrag(UIInventoryItem item)
+    {
+
+    }
+
+    private void HandleSwap(UIInventoryItem item)
+    {
+
+    }
+
+    private void HandleBeginDrag(UIInventoryItem item)
+    {
+
+    }
+
+    private void HandleItemSelection(UIInventoryItem item)
+    {
+        Debug.Log(item.name);
     }
 
     public void Show()
