@@ -44,6 +44,7 @@ public class UIInventoryItem : MonoBehaviour
     public void Select()
     {
         borderImage.enabled = true;
+        Debug.Log("D");
     }
 
     public void OnPointerClick(BaseEventData baseData)
