@@ -14,6 +14,11 @@ public class CanvasManager : MonoBehaviour
 
     CanvasStates currentState;
 
+    private void Start()
+    {
+        ChangeCanvas(CanvasStates.InGame);
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)){

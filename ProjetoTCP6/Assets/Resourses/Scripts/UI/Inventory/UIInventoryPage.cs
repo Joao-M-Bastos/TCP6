@@ -11,13 +11,17 @@ public class UIInventoryPage : MonoBehaviour
 
     List<UIInventoryItem> listOfUIItems = new List<UIInventoryItem>();
 
+    [SerializeField] Sprite itemImage;
+
+
     public void InicializeInventoryUI(int inventorySize)
     {
         for(int i =0; i < inventorySize; i++)
         {
+            Debug.Log(itemPrefab.name);
+            Debug.Log(contentPanel);
             UIInventoryItem uiItem = Instantiate(itemPrefab, contentPanel);
             uiItem.transform.localScale = new Vector3(1, 1, 1);
-
 
 
             listOfUIItems.Add(uiItem);
@@ -27,6 +31,8 @@ public class UIInventoryPage : MonoBehaviour
             uiItem.OnItemDroped += HandleSwap;
             uiItem.OnItemEndDrag += HandleEndDrag;
             uiItem.OnRightMouseBtnClick += HandleShowItemActions;
+
+            
         }
     }
 

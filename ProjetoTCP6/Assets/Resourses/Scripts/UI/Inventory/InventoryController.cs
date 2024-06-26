@@ -8,6 +8,8 @@ public class InventoryController : MonoBehaviour
 
     [SerializeField] int inventorySize;
 
+    
+
     private void Start()
     {
         inventoryPage.InicializeInventoryUI(inventorySize);
