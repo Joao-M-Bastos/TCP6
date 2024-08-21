@@ -10,7 +10,7 @@ public enum CanvasStates{
 
 public class CanvasManager : MonoBehaviour
 {
-    [SerializeField] GameObject InGameCanvas, PausedCanvas, InventoryCanvas;
+    [SerializeField] GameObject InGameCanvas, PausedCanvas;
 
     CanvasStates currentState;
 
@@ -42,7 +42,5 @@ public class CanvasManager : MonoBehaviour
         InGameCanvas.SetActive(currentState == CanvasStates.InGame || currentState == CanvasStates.Paused || currentState == CanvasStates.Inventory);
 
         PausedCanvas.SetActive(currentState == CanvasStates.Paused);
-
-        InventoryCanvas.SetActive(currentState == CanvasStates.Inventory);
     }
 }

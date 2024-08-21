@@ -8,12 +8,18 @@ public abstract class BaseEnemy : MonoBehaviour
     [SerializeField] protected int damage;
     [SerializeField] protected float speed, viewDistance, attackDistance;
     [SerializeField] float baseAttackCooldown;
+    
 
     [SerializeField] BoxCollider attackAreaCollider;
+    DropItem dropItemOnDeath;
 
     float attackCooldown, attackAreaActive;
     Transform playerTransform;
 
+    private void Awake()
+    {
+        dropItemOnDeath = GetComponent<DropItem>();
+    }
 
     #region Start
     protected void FindPlayer()
@@ -104,6 +110,11 @@ public abstract class BaseEnemy : MonoBehaviour
     }
     #endregion
 
+    public void DropItemOnDeath()
+    {
+        if(dropItemOnDeath != null)
+            dropItemOnDeath.DropItemCall();
+    }
 
     #region Abstract
     public abstract void SpecialMove();

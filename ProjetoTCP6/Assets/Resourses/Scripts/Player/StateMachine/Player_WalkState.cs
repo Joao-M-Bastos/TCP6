@@ -34,7 +34,7 @@ public class Player_WalkState : PlayerBaseState
 
     public void StartState(PlayerScpt player, PlayerStateController stateController)
     {
-        Debug.Log("InWalkingState");
+        //Debug.Log("InWalkingState");
     }
 
     public void UpdateState(PlayerScpt player, PlayerStateController stateController)

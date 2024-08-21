@@ -209,6 +209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7411952202928579945}
   - component: {fileID: 3989557233827245734}
+  - component: {fileID: 7819036752919619518}
   - component: {fileID: 2835270866893299323}
   - component: {fileID: 449656441798027161}
   - component: {fileID: 2652724086405210087}
@@ -256,6 +257,20 @@ MonoBehaviour:
   attackAreaCollider: {fileID: 449656441798027161}
   trashCorpse: {fileID: 8645667281827114127, guid: 91befce94085b91428ca8e8f73f4aa24,
     type: 3}
+--- !u!114 &7819036752919619518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4280076498758615629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc3efd72c18ca544b5cc5c7ca69cfa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemID: 0
+  dropChance: 100
 --- !u!135 &2835270866893299323
 SphereCollider:
   m_ObjectHideFlags: 0

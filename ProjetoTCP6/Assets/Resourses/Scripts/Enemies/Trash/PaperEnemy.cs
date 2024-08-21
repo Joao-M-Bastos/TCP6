@@ -24,7 +24,8 @@ public class PaperEnemy : TrashEnemy
 
     public override void OnDie()
     {
-        GenerateCorpse();
+        DropItemOnDeath();
+        //GenerateCorpse();
     }
 
     public override void SpecialMove()
