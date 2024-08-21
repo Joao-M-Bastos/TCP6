@@ -19,6 +19,8 @@ public class RightHand : MonoBehaviour
     private void Update()
     {
         currentWeapon.UpdateFrame();
+
+        
     }
 
     public void SetSword(int id, string name = "")

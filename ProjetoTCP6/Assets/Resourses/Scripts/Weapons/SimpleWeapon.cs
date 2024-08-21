@@ -6,11 +6,14 @@ public class SimpleWeapon : BaseWeapon
 {
     public override void ActivateSword()
     {
-        if (currentCooldown <= 0)
-        {
-            ActivateCollider();
-        }
+        //if (currentCooldown <= 0)
+           ActivateCollider();
+        //}
+
+        //Gizmos.DrawCube(boxStartPoint.transform.position + boxStartPoint.transform.forward, new Vector3(currentSize, currentSize, currentSize) * 2);
     }
+
+    
 
     public override void HitOtherCallback()
     {
