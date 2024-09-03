@@ -42,8 +42,6 @@ PlayerSettings:
   m_SplashScreenLogos:
   - logo: {fileID: 10404, guid: 0000000000000000f000000000000000, type: 0}
     duration: 2
-  - logo: {fileID: 21300000, guid: b21e25f0764d0e24899b4c93a756c4d1, type: 3}
-    duration: 2
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1024
@@ -928,7 +926,7 @@ PlayerSettings:
   hmiLogStartupTiming: 0
   hmiCpuConfiguration: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 0
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
   cloudProjectId: 74b8e5f0-7421-406b-b233-5a71ce8246ff
   framebufferDepthMemorylessMode: 0

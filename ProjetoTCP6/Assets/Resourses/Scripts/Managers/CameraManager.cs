@@ -15,5 +15,8 @@ public class CameraManager : MonoBehaviour
     void Update()
     {
         this.transform.position =  playerTranform.position;
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
     }
 }

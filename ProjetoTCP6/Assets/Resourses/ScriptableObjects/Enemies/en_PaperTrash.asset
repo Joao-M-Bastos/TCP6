@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66a3018ac13acec45b5cf9581faaf4d0, type: 3}
+  m_Name: en_PaperTrash
+  m_EditorClassIdentifier: 
+  ID: 0
+  displayName: Paper Trash
+  description: A pile of paper left on the floor can couse a lot of problems
+  itemsIcon: {fileID: 21300000, guid: f445da4fc63e41f498c1c026506970b8, type: 3}
+  life: 2
+  damage: 1
+  speed: 2
+  viewDistance: 8
+  attackDistance: 2
+  baseAttackCooldown: 1

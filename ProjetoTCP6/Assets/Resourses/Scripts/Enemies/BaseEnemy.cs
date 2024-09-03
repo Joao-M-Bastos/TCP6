@@ -4,13 +4,24 @@ using UnityEngine;
 
 public abstract class BaseEnemy : MonoBehaviour
 {
-    [SerializeField] int life;
-    [SerializeField] protected int damage;
-    [SerializeField] protected float speed, viewDistance, attackDistance;
-    [SerializeField] float baseAttackCooldown;
-    
+    public EnemyData enemyData;
+    protected EnemyBaseState currentState;
+    protected EnemyBaseState idleState = new EnemyIdleState();
+    protected EnemyBaseState currentState;
+    protected EnemyBaseState currentState;
+    protected EnemyBaseState currentState;
+
+    protected int life;
+    protected int damage;
+    protected float speed, viewDistance, attackDistance;
+    protected float baseAttackCooldown;
+
+    protected int addToDamage;
+
+    [SerializeField] GameObject deathParticule;
 
     [SerializeField] BoxCollider attackAreaCollider;
+    protected Rigidbody rb;
     DropItem dropItemOnDeath;
 
     float attackCooldown, attackAreaActive;
@@ -19,20 +30,36 @@ public abstract class BaseEnemy : MonoBehaviour
     private void Awake()
     {
         dropItemOnDeath = GetComponent<DropItem>();
+        rb = GetComponent<Rigidbody>();
+
+        life = enemyData.life;
+        damage = enemyData.damage;
+        speed = enemyData.speed;
+        viewDistance = enemyData.viewDistance;
+        attackDistance = enemyData.attackDistance;
+        baseAttackCooldown = enemyData.baseAttackCooldown;
     }
 
     #region Start
-    protected void FindPlayer()
+    protected void TryFindPlayer()
     {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        if (playerTransform == null)
+        {
+            playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        }
     }
 
     #endregion
 
     #region Update
-    protected void MoveFoward()
+
+    protected void LookAtPlayer()
     {
         transform.LookAt(new Vector3(playerTransform.position.x, transform.position.y, playerTransform.position.z));
+    }
+    protected void MoveFoward()
+    {
+        LookAtPlayer();
         
         transform.position += transform.forward * speed * Time.deltaTime;
     }
@@ -50,7 +77,7 @@ public abstract class BaseEnemy : MonoBehaviour
         if (other.TryGetComponent(out PlayerScpt player))
         {
             attackAreaCollider.enabled = false;
-            player.TakeAHit(damage);
+            player.TakeAHit(damage + addToDamage);
         }
     }
 
@@ -62,6 +89,12 @@ public abstract class BaseEnemy : MonoBehaviour
     {
         attackAreaCollider.enabled = true;
         attackAreaActive = 0.2f;
+        attackCooldown = baseAttackCooldown;
+    }
+    public void ActiveAttackCollider(float extraActiveTime)
+    {
+        attackAreaCollider.enabled = true;
+        attackAreaActive = 0.2f + extraActiveTime;
         attackCooldown = baseAttackCooldown;
     }
 
@@ -83,7 +116,10 @@ public abstract class BaseEnemy : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-
+    public void AddToDamage(int addToDmg)
+    {
+        addToDamage = addToDmg;
+    }
 
     #endregion
 
@@ -108,13 +144,40 @@ public abstract class BaseEnemy : MonoBehaviour
     {
         return Vector3.Distance(transform.position, playerTransform.position);
     }
+
+    public bool PlayerFound()
+    {
+        if(playerTransform != null)
+            return true;
+
+        TryFindPlayer();
+        return false;
+    }
+
     #endregion
 
+    #region OnDeath
     public void DropItemOnDeath()
     {
         if(dropItemOnDeath != null)
             dropItemOnDeath.DropItemCall();
     }
+
+    public void PlayParticuleOnDeath()
+    {
+        Instantiate(deathParticule, this.transform.position, deathParticule.transform.rotation);
+    }
+
+    #endregion
+
+    #region State
+    
+    public void ChageState(EnemyBaseState newState)
+    {
+        currentState = newState;
+    }
+
+    #endregion
 
     #region Abstract
     public abstract void SpecialMove();

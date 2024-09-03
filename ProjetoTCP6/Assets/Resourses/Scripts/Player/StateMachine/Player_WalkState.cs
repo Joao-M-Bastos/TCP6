@@ -41,6 +41,7 @@ public class Player_WalkState : PlayerBaseState
     {
         if (Input.GetMouseButtonDown(0))
         {
+            player.Animator.SetTrigger("Attack");
             player.RightHand.ActivateSword();
         }
     }

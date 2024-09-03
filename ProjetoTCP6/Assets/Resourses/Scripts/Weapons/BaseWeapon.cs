@@ -36,7 +36,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
         GameObject currentBox = Instantiate(boxCollider, boxStartPoint.transform);
         currentBox.transform.position = trueStartPoint;
-        currentBox.GetComponent<DamageCollider>().SetCollider(0.2f, baseDamage);
+        currentBox.GetComponent<DamageCollider>().SetCollider(0.5f, baseDamage);
 
         currentCooldown = baseCooldown;
     }

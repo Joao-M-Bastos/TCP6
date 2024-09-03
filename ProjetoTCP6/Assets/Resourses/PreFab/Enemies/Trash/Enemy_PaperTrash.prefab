@@ -248,12 +248,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c6fd6f99b47264ebb2ccfe4267449f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 2
-  damage: 1
-  speed: 2
-  viewDistance: 10
-  attackDistance: 1.2
-  baseAttackCooldown: 1
+  enemyData: {fileID: 11400000, guid: eee7c3c8c06015241aa7420f131d1e56, type: 2}
+  deathParticule: {fileID: 6001646137913867490, guid: ad4fb71a3e3466f44871689fb99cb311,
+    type: 3}
   attackAreaCollider: {fileID: 449656441798027161}
   trashCorpse: {fileID: 8645667281827114127, guid: 91befce94085b91428ca8e8f73f4aa24,
     type: 3}

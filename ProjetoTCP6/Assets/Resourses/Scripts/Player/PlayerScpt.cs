@@ -17,11 +17,13 @@ public class PlayerScpt : MonoBehaviour
 
     Rigidbody playerRB;
     RightHand rightHand;
+    Animator animator;
 
 
     //Ponteiros
     public Rigidbody PlayerRB => playerRB;
     public RightHand RightHand => rightHand;
+    public Animator Animator => animator;
 
     #endregion
 
@@ -29,6 +31,7 @@ public class PlayerScpt : MonoBehaviour
     {
         playerRB = GetComponent<Rigidbody>();
         rightHand = GetComponentInChildren<RightHand>();
+        animator = GetComponent<Animator>();
         currentLife = baseLife;
     }
 

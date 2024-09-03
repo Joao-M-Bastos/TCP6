@@ -1,70 +1,69 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class InventorySlot
 {
-    int slotID;
-    int itemId;
-    int itemAmount;
+    [SerializeField] private InventoryItemData itemData;
+    [SerializeField] private int stackSize;
 
-    public InventorySlot(int slotID)
+    public InventoryItemData ItemData => itemData;
+    public int StackSize => stackSize;
+
+    public InventorySlot(InventoryItemData source, int amount)
     {
-        this.slotID = slotID;
-        this.itemId = -1;
-        this.itemAmount = 0;
+        itemData = source;
+        stackSize = amount;
     }
 
-    public int GetSlotId()
+    public InventorySlot()
     {
-        return itemId;
+        ClearSlot();
     }
 
-    public bool HasItem()
+    public void UpdateInventorySlot(InventoryItemData source, int amount)
     {
-        return itemId != -1;
-    }
-
-    public int WhatItemInSlot()
-    {
-        return itemId;
-    }
-
-    public int ItemQuantity()
-    {
-        return itemAmount;
+        itemData = source;
+        stackSize = amount;
     }
 
     public void ClearSlot()
     {
-        itemId = -1;
+        itemData = null;
+        stackSize = -1;
     }
 
-    public int GetAnItem()
+    public bool RoomLeftInStack(int amountToAdd, out int amountRemainig)
     {
-        int itemToReturn = WhatItemInSlot();
+        amountRemainig = itemData.maxStackSize - stackSize;
+        return RoomLeftInStack(amountToAdd);
+    }
 
-        itemAmount--;
+    public bool RoomLeftInStack(int amountToAdd)
+    {
+        return stackSize + amountToAdd <= itemData.maxStackSize;
+    }
 
-        if (itemAmount <= 0)
-        {
-           ClearSlot();
+    public void AddToStack(int amount)
+    {
+        stackSize += amount;
+    }
+
+    public void RemoveToStack(int amount)
+    {
+        stackSize -= amount;
+    }
+
+    public void AssingItem(InventorySlot invSlot)
+    {
+        if(itemData == invSlot.ItemData)
+            AddToStack(invSlot.stackSize);
+        else { 
+            itemData = invSlot.ItemData;
+            stackSize = 0;
+            AddToStack(invSlot.stackSize);
         }
-        return itemToReturn;
-    }
-
-    public void AddItem(int _itemId, int amountToAdd)
-    {
-        Debug.Log(slotID);
-
-        if(itemId == -1)
-            itemId = _itemId;
-
-        Debug.Log(itemId);
-
-        if (this.itemId == _itemId)
-            itemAmount += amountToAdd;
-        
-        Debug.Log(itemAmount);
     }
 }

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class DropItem : MonoBehaviour
 {
@@ -12,8 +11,6 @@ public class DropItem : MonoBehaviour
     {
         if (Random.Range(0, 100) > dropChance)
             return;
-
-        
 
         GameObject itemToDrop = ListOfItems.GetItemById(itemID);
 

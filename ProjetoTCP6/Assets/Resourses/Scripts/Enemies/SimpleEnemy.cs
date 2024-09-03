@@ -7,7 +7,7 @@ public class SimpleEnemy : BaseEnemy
 
     private void Start()
     {
-        FindPlayer();
+        TryFindPlayer();
     }
     private void Update()
     {
