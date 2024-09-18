@@ -23,13 +23,19 @@ public class Player_WalkState : PlayerBaseState
 
         player.PlayerRB.AddForce(direction * Time.deltaTime * player.Aceleration, ForceMode.VelocityChange);
 
+        if (player.CanDash() && Input.GetKey(KeyCode.Space))
+        {
+            player.ResetDashTime();
+            player.PlayerRB.AddForce(direction * player.Aceleration * 2f, ForceMode.Impulse);
+        }
+
         if (direction == Vector3.zero || player.PlayerRB.velocity.magnitude > player.MaxSpeed)
             player.PlayerRB.velocity *= 0.8f;
 
         Vector3 input = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 playerPosition = player.transform.position;
 
-        player.transform.LookAt(new Vector3(input.x, playerPosition.y, input.z + 4));
+        player.transform.LookAt(new Vector3(input.x, playerPosition.y, input.z + 12));
     }
 
     public void StartState(PlayerScpt player, PlayerStateController stateController)
@@ -39,10 +45,9 @@ public class Player_WalkState : PlayerBaseState
 
     public void UpdateState(PlayerScpt player, PlayerStateController stateController)
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !player.RightHand.IsWeaponActive())
         {
-            player.Animator.SetTrigger("Attack");
-            player.RightHand.ActivateSword();
+            player.RightHand.ActivateWeapon(player.Animator);
         }
     }
 }

@@ -38,7 +38,7 @@ public class InventorySystem
                 if (slot.RoomLeftInStack(amountToAdd))
                 {
                     slot.AddToStack(amountToAdd);
-                    OnInventorySlotChanged?.Invoke(slot);
+                    OnSlotChanged(slot);
                     return true;
                 }
             }
@@ -66,5 +66,10 @@ public class InventorySystem
     {
         freeSlot = inventorySlots.FirstOrDefault(i => i.ItemData == null);
         return freeSlot != null;
+    }
+
+    public void OnSlotChanged(InventorySlot slot)
+    {
+        OnInventorySlotChanged?.Invoke(slot);
     }
 }

@@ -54,6 +54,8 @@ public class InventorySlot
     public void RemoveToStack(int amount)
     {
         stackSize -= amount;
+        if(stackSize <= 0)
+            ClearSlot();
     }
 
     public void AssingItem(InventorySlot invSlot)

@@ -120,6 +120,7 @@ public abstract class BaseEnemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         life -= damage;
+        immunityTime = 0.5f;
         if (life <= 0)
             Die();
     }

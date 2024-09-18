@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Door : Interactable
+public class Door : MonoBehaviour, IInteractable
 {
+    [SerializeField] ItemDataBase itemDataBase;
     [SerializeField] int keyNeeded;
+    [SerializeField] GameObject fog;
     bool isOpend;
     Animator animator;
+
+    public UnityAction<IInteractable> onInteractionComplete { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
     private void Awake()
     {
@@ -14,23 +19,32 @@ public class Door : Interactable
         isOpend = false;
     }
 
-    public void TryOpenDoor()
+    public void Interact(Interactor interactor, out bool interactionSuccess)
     {
+
+        interactionSuccess = false;
+
         if (isOpend)
             return;
-        /*
-        Inventory inventory = FindAnyObjectByType<Inventory>();
 
-        if (keyNeeded <= 0 || inventory.HasItem(keyNeeded))
+        if (interactor.gameObject.TryGetComponent(out InventoryHolder playerInv))
         {
-            animator.SetBool("Open", true);
-            isOpend = true;
-            inventory.RemoveItem(keyNeeded);
-        } */
+            playerInv.InventorySystem.ContainItem(itemDataBase.GetItem(keyNeeded),out List<InventorySlot> invSlots);
+
+            if (invSlots.Count > 0)
+            {
+                animator.SetBool("Open", true);
+                isOpend = true;
+                interactionSuccess = true;
+                invSlots[0].RemoveToStack(1);
+                Destroy(fog);
+                playerInv.InventorySystem.OnSlotChanged(invSlots[0]);
+            }
+        }
     }
 
-    public override void Interact()
+    public void EndInteraction()
     {
-        TryOpenDoor();
+        throw new System.NotImplementedException();
     }
 }

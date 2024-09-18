@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,9 @@ public class PlayerScpt : MonoBehaviour
 
     [SerializeField] int acelleration, maxSpeed;
     [SerializeField] int baseLife, currentLife;
+    [SerializeField] float dashCooldown;
+    float currentDash;
+
     public int Aceleration => acelleration;
     public int MaxSpeed => maxSpeed;
 
@@ -38,5 +42,33 @@ public class PlayerScpt : MonoBehaviour
     public void TakeAHit(int value)
     {
         currentLife -= value;
+    }
+
+    public void DeactivateWeapon()
+    {
+        rightHand.DeactivateWeapon();
+    }
+
+    public void ActivateWeaponCollider()
+    {
+        rightHand.ActivateWeaponCollider();
+    }
+
+    public void DeactivateWeaponCollider()
+    {
+        rightHand.DeactivateWeaponCollider();
+    }
+
+    public bool CanDash()
+    {
+        if (currentDash >= 0)
+            currentDash -= Time.deltaTime;
+
+        return currentDash <= 0;
+    }
+
+    public void ResetDashTime()
+    {
+        currentDash = dashCooldown;
     }
 }

@@ -5,45 +5,58 @@ using UnityEngine;
 
 public class RightHand : MonoBehaviour
 {
-    [SerializeField] Transform boxStartPoint;
-    [SerializeField] BaseWeapon currentWeapon;
+    BaseWeapon currentWeapon;
+    [SerializeField] WeaponDataBase weaponDataBase;
 
     GameObject currentWeaponObj;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         SetSword(0);
     }
 
-    private void Update()
-    {
-        currentWeapon.UpdateFrame();
-    }
-
-    public void SetSword(int id, string name = "")
+    public void SetSword(int id)
     {
         if(currentWeaponObj != null)
             Destroy(currentWeaponObj);
 
-        if (id >= 0)
-            currentWeapon = ListOfItems.GetSwordById(id).GetComponent<BaseWeapon>();
-        else
-            currentWeapon = ListOfItems.GetSwordByName(name).GetComponent<BaseWeapon>();
-
-        SetNewStatus();
-
-        currentWeaponObj = Instantiate(currentWeapon.gameObject, this.transform);
+        currentWeaponObj = Instantiate(weaponDataBase.GetWeapon(id).weaponPrefab, this.transform);
+        currentWeapon = currentWeaponObj.GetComponent<BaseWeapon>();
     }
 
-    private void SetNewStatus()
+    public void SetSword(string name = "")
     {
-        currentWeapon.SetSwordStatus(boxStartPoint);
+        if (currentWeaponObj != null)
+            Destroy(currentWeaponObj);
+
+        currentWeaponObj = Instantiate(weaponDataBase.GetWeapon(name).weaponPrefab, this.transform);
+        currentWeapon = currentWeaponObj.GetComponent<BaseWeapon>();
     }
 
-    public void ActivateSword()
+    public bool IsWeaponActive()
     {
-        currentWeapon.ActivateSword();
+        return currentWeapon.isWeaponActive;
+    }
+
+    public void ActivateWeapon(Animator playerAnim)
+    {
+        currentWeapon.ActivateWeapon(playerAnim);
+    }
+
+    public void DeactivateWeapon()
+    {
+        currentWeapon.DeactivateWeapon();
+    }
+
+    public void ActivateWeaponCollider()
+    {
+        currentWeapon.ActivateCollider();
+    }
+
+    public void DeactivateWeaponCollider()
+    {
+        currentWeapon.DeactivateCollider();
     }
 
 

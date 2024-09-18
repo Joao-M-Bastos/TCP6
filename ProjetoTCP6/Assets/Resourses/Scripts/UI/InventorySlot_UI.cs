@@ -53,6 +53,7 @@ public class InventorySlot_UI : MonoBehaviour
     public void UpdateUISlot()
     {
         if (assingInventorySlot.ItemData != null) UpdateUISlot(assingInventorySlot);
+        else ClearSlot();
     }
 
     public void OnUISlotClick()

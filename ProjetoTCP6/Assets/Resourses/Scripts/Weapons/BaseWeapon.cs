@@ -5,45 +5,50 @@ using UnityEngine;
 
 public abstract class BaseWeapon : MonoBehaviour
 {
-    [SerializeField] protected float baseCooldown;
-    [SerializeField] int baseDamage, baseSize;
-    [SerializeField] GameObject boxCollider;
-    protected float cooldownReductionPercentage = 100, currentCooldown;
-    int size;
-    float currentSize;
-    Transform boxStartPoint;
+    [SerializeField] WeaponData weaponData;
+    [SerializeField] BoxCollider boxCollider;
 
-    public void SetSwordStatus(Transform _raycastStartPoint)
+    int baseDamage;
+    string animToTrigger;
+
+    public bool isWeaponActive;
+
+    private void Start()
     {
-        boxStartPoint = _raycastStartPoint;
+        baseDamage = weaponData.damage;
+        animToTrigger = weaponData.animToTrigger;
     }
 
-    public void ReduceTimer()
-    {
-        if (currentCooldown > 0)
-        {
-            currentCooldown -= Time.deltaTime * (cooldownReductionPercentage / 100);
-        }
-    }
+    public abstract void ActivateWeapon(Animator handAnimator);
 
-    public abstract void ActivateSword();
+    public abstract void DeactivateWeapon();
 
     public void ActivateCollider()
     {
-        currentSize = size;
+        boxCollider.enabled = true;
+    }
 
-        Vector3 trueStartPoint = boxStartPoint.transform.position + boxStartPoint.transform.forward * (size / 2);
+    public void DeactivateCollider()
+    {
+        boxCollider.enabled  =false;
+    }
 
-        GameObject currentBox = Instantiate(boxCollider, boxStartPoint.transform);
-        currentBox.transform.position = trueStartPoint;
-        currentBox.GetComponent<DamageCollider>().SetCollider(0.5f, baseDamage);
+    public void PlayWeaponAnimation(Animator handAnimator)
+    {
+        handAnimator.SetTrigger(animToTrigger);
+    }
 
-        currentCooldown = baseCooldown;
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out BaseEnemy enemy))
+        {
+            HitOtherCallback();
+            enemy.TakeHit(baseDamage);
+        }
     }
 
     public abstract void SpecialEffect();
 
     public abstract void HitOtherCallback();
 
-    public abstract void UpdateFrame();
 }
