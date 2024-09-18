@@ -22,10 +22,6 @@ public class SimpleEnemy : BaseEnemy
         //row new System.NotImplementedException();
     }
 
-    public override void SpecialMove()
-    {
-        //row new System.NotImplementedException();
-    }
 
     public override void Attack()
     {

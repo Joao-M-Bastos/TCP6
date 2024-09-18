@@ -4,12 +4,14 @@ using UnityEngine;
 
 public enum CanvasStates{
     InGame,
-    Paused
+    Paused,
+    GameOver,
+    Win
 }
 
 public class CanvasManager : MonoBehaviour
 {
-    [SerializeField] GameObject InGameCanvas, PausedCanvas;
+    [SerializeField] GameObject InGameCanvas, PausedCanvas, GameOverCanva, WinCanvas;
 
     CanvasStates currentState;
 
@@ -18,13 +20,11 @@ public class CanvasManager : MonoBehaviour
         ChangeCanvas(CanvasStates.InGame);
     }
 
-    private void Update()
+    public void PauseClicked()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)){
-            if (currentState != CanvasStates.InGame)
-                ChangeCanvas(CanvasStates.InGame);
-            else ChangeCanvas(CanvasStates.Paused);
-        }
+        if (currentState != CanvasStates.InGame)
+            ChangeCanvas(CanvasStates.InGame);
+        else ChangeCanvas(CanvasStates.Paused);
     }
 
     public void ChangeCanvas(CanvasStates state)
@@ -34,5 +34,9 @@ public class CanvasManager : MonoBehaviour
         InGameCanvas.SetActive(currentState == CanvasStates.InGame || currentState == CanvasStates.Paused);
 
         PausedCanvas.SetActive(currentState == CanvasStates.Paused);
+
+        GameOverCanva.SetActive(currentState == CanvasStates.GameOver);
+
+        WinCanvas.SetActive(currentState == CanvasStates.Win);
     }
 }

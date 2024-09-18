@@ -33,8 +33,9 @@ public class ItemPickup : MonoBehaviour
         
         else if (other.TryGetComponent(out Recicler recicler))
         {
-            recicler.AddItem(this.itemData);
-            Destroy(gameObject);
+            recicler.AddItem(this.itemData, out bool consumed);
+            if(consumed)
+                Destroy(gameObject);
         }
     }
 

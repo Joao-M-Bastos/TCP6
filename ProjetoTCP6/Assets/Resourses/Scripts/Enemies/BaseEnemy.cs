@@ -30,7 +30,7 @@ public abstract class BaseEnemy : MonoBehaviour
     DropItem dropItemOnDeath;
 
     float attackCooldown, attackAreaActive;
-    Transform playerTransform;
+    protected Transform playerTransform;
 
     float immunityTime = 0.5f;
 
@@ -50,7 +50,7 @@ public abstract class BaseEnemy : MonoBehaviour
     #region Start
     protected void TryFindPlayer()
     {
-        if (playerTransform == null)
+        if (playerTransform == null && GameObject.FindGameObjectWithTag("Player") != null)
         {
             playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         }
@@ -195,7 +195,6 @@ public abstract class BaseEnemy : MonoBehaviour
     #endregion
 
     #region Abstract
-    public abstract void SpecialMove();
 
     public abstract void OnDie();
 

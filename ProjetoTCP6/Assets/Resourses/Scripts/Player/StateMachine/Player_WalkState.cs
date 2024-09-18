@@ -35,7 +35,7 @@ public class Player_WalkState : PlayerBaseState
         Vector3 input = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 playerPosition = player.transform.position;
 
-        player.transform.LookAt(new Vector3(input.x, playerPosition.y, input.z + 12));
+        player.transform.LookAt(new Vector3(input.x, playerPosition.y, input.z + 11.5f));
     }
 
     public void StartState(PlayerScpt player, PlayerStateController stateController)

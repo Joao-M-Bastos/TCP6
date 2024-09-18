@@ -13,7 +13,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
+  - Boss
   - Player
   - Interactable
   - CollideWithItem

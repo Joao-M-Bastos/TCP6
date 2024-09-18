@@ -2,9 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerScpt : MonoBehaviour
 {
+    public delegate void OnPlayerDeath();
+    public static OnPlayerDeath onPlayerDie;
+
+    public delegate void OnPlayerUpdateLife();
+    public static OnPlayerUpdateLife onPlayerUpdateLife;
+
+
     #region Values
 
     [SerializeField] int acelleration, maxSpeed;
@@ -14,6 +22,8 @@ public class PlayerScpt : MonoBehaviour
 
     public int Aceleration => acelleration;
     public int MaxSpeed => maxSpeed;
+
+    public int CurrentLife => currentLife;
 
     #endregion
 
@@ -42,6 +52,12 @@ public class PlayerScpt : MonoBehaviour
     public void TakeAHit(int value)
     {
         currentLife -= value;
+        onPlayerUpdateLife?.Invoke();
+        if (currentLife <= 0)
+        {
+            onPlayerDie?.Invoke();
+            Destroy(gameObject);
+        }
     }
 
     public void DeactivateWeapon()

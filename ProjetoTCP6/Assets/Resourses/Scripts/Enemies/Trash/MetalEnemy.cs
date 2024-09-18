@@ -40,11 +40,6 @@ public class MetalEnemy : TrashEnemy
         }
     }
 
-    public override void SpecialMove()
-    {
-        //throw new System.NotImplementedException();
-    }
-
     public override void StrongAttack()
     {
         if (currentCooldown > 0)
