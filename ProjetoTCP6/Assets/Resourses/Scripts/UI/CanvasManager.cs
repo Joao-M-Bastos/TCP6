@@ -12,6 +12,7 @@ public enum CanvasStates{
 public class CanvasManager : MonoBehaviour
 {
     [SerializeField] GameObject InGameCanvas, PausedCanvas, GameOverCanva, WinCanvas;
+    [SerializeField] GameObject InventoryCanva;
 
     CanvasStates currentState;
 
@@ -31,12 +32,14 @@ public class CanvasManager : MonoBehaviour
     {
         currentState = state;
 
-        InGameCanvas.SetActive(currentState == CanvasStates.InGame || currentState == CanvasStates.Paused);
+        InGameCanvas.SetActive(currentState == CanvasStates.InGame);
 
         PausedCanvas.SetActive(currentState == CanvasStates.Paused);
 
         GameOverCanva.SetActive(currentState == CanvasStates.GameOver);
 
         WinCanvas.SetActive(currentState == CanvasStates.Win);
+
+        InventoryCanva.SetActive(InGameCanvas.activeSelf);
     }
 }
