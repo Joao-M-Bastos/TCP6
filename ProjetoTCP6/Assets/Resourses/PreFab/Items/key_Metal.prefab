@@ -28,8 +28,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7818609663484251096}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -112,7 +112,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5898440588949254401}
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 20
   pickupRadius: 0.8
-  itemData: {fileID: 11400000, guid: 1c3abc2c60ffffb4da29b4c136a46444, type: 2}
+  itemData: {fileID: 11400000, guid: b620b0d43bfd63b4294a5d10d915e9f2, type: 2}
 --- !u!54 &1437302726991859546
 Rigidbody:
   m_ObjectHideFlags: 0
