@@ -5,11 +5,17 @@ using UnityEngine;
 [RequireComponent(typeof(SphereCollider))]
 public class ItemPickup : MonoBehaviour
 {
+    [SerializeField] private float rotationSpeed = 20;
     public float pickupRadius = 1;
 
     public InventoryItemData itemData;
 
     private SphereCollider myCollider;
+
+    private void Update()
+    {
+        transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
+    }
 
     private void Awake()
     {
@@ -22,11 +28,21 @@ public class ItemPickup : MonoBehaviour
     {
         InventoryHolder inventory = other.GetComponent<InventoryHolder>();
 
-        if (!inventory) return;
-
-        if (inventory.InventorySystem.AddToInventory(itemData, 1))
-        {
+        if (inventory && inventory.InventorySystem.AddToInventory(itemData, 1))
             Destroy(gameObject);
+        
+        else if (other.TryGetComponent(out Recicler recicler))
+        {
+            recicler.AddItem(this.itemData);
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("ThreadMill"))
+        {
+            transform.position += other.transform.forward * Time.deltaTime;
         }
     }
 }

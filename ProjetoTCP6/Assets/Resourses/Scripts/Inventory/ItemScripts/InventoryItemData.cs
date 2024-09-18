@@ -11,4 +11,5 @@ public class InventoryItemData : ScriptableObject
     [TextArea (4,4)] public string description;
     public Sprite itemsIcon;
     public int maxStackSize;
+    public GameObject itemPrefab;
 }

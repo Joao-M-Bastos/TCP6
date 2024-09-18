@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc3efd72c18ca544b5cc5c7ca69cfa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemID: 1
+  itemToDrop: {fileID: 11400000, guid: 1c3abc2c60ffffb4da29b4c136a46444, type: 2}
   dropChance: 100
 --- !u!65 &449656441798027161
 BoxCollider:
@@ -231,7 +231,7 @@ MonoBehaviour:
   deathParticule: {fileID: 6001646137913867490, guid: ad4fb71a3e3466f44871689fb99cb311,
     type: 3}
   attackAreaCollider: {fileID: 449656441798027161}
-  trashCorpse: {fileID: 0}
+  attackState: 0
 --- !u!65 &5133421927219943786
 BoxCollider:
   m_ObjectHideFlags: 0

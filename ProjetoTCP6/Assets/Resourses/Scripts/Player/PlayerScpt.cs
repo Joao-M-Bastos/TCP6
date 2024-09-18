@@ -35,14 +35,6 @@ public class PlayerScpt : MonoBehaviour
         currentLife = baseLife;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.TryGetComponent(out Item itemCollided))
-        {
-            itemCollided.CollectItem();
-        }
-    }
-
     public void TakeAHit(int value)
     {
         currentLife -= value;

@@ -252,8 +252,7 @@ MonoBehaviour:
   deathParticule: {fileID: 6001646137913867490, guid: ad4fb71a3e3466f44871689fb99cb311,
     type: 3}
   attackAreaCollider: {fileID: 449656441798027161}
-  trashCorpse: {fileID: 8645667281827114127, guid: 91befce94085b91428ca8e8f73f4aa24,
-    type: 3}
+  attackState: 0
 --- !u!114 &7819036752919619518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,7 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc3efd72c18ca544b5cc5c7ca69cfa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemID: 0
+  itemToDrop: {fileID: 11400000, guid: aff49c6ed4521ec449c7e6aeff805f8f, type: 2}
   dropChance: 100
 --- !u!135 &2835270866893299323
 SphereCollider:

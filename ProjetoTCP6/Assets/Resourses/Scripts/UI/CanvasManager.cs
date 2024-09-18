@@ -4,8 +4,7 @@ using UnityEngine;
 
 public enum CanvasStates{
     InGame,
-    Paused,
-    Inventory
+    Paused
 }
 
 public class CanvasManager : MonoBehaviour
@@ -26,20 +25,13 @@ public class CanvasManager : MonoBehaviour
                 ChangeCanvas(CanvasStates.InGame);
             else ChangeCanvas(CanvasStates.Paused);
         }
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            if (currentState == CanvasStates.Inventory)
-                ChangeCanvas(CanvasStates.InGame);
-            else ChangeCanvas(CanvasStates.Inventory);
-        }
     }
 
     public void ChangeCanvas(CanvasStates state)
     {
         currentState = state;
 
-        InGameCanvas.SetActive(currentState == CanvasStates.InGame || currentState == CanvasStates.Paused || currentState == CanvasStates.Inventory);
+        InGameCanvas.SetActive(currentState == CanvasStates.InGame || currentState == CanvasStates.Paused);
 
         PausedCanvas.SetActive(currentState == CanvasStates.Paused);
     }

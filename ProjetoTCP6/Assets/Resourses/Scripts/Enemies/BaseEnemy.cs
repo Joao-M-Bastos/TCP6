@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EnemyState
+{
+    Idle,
+    Following,
+    Attack,
+    Resting
+}
+
 public abstract class BaseEnemy : MonoBehaviour
 {
     public EnemyData enemyData;
-    protected EnemyBaseState currentState;
-    protected EnemyBaseState idleState = new EnemyIdleState();
-    protected EnemyBaseState currentState;
-    protected EnemyBaseState currentState;
-    protected EnemyBaseState currentState;
+
+    protected EnemyState currentState;
 
     protected int life;
     protected int damage;
@@ -26,6 +31,8 @@ public abstract class BaseEnemy : MonoBehaviour
 
     float attackCooldown, attackAreaActive;
     Transform playerTransform;
+
+    float immunityTime = 0.5f;
 
     private void Awake()
     {
@@ -72,6 +79,12 @@ public abstract class BaseEnemy : MonoBehaviour
             attackAreaCollider.enabled = false;
     }
 
+    protected void RemoveImmunityTime()
+    {
+        if(immunityTime > 0)
+            immunityTime -= Time.deltaTime;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out PlayerScpt player))
@@ -100,7 +113,8 @@ public abstract class BaseEnemy : MonoBehaviour
 
     public void TakeHit(int damage)
     {
-        TakeDamage(damage);
+        if(immunityTime <= 0)
+            TakeDamage(damage);
     }
 
     public void TakeDamage(int damage)
@@ -172,7 +186,7 @@ public abstract class BaseEnemy : MonoBehaviour
 
     #region State
     
-    public void ChageState(EnemyBaseState newState)
+    public void ChageState(EnemyState newState)
     {
         currentState = newState;
     }

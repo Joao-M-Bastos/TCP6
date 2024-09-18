@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DropItem : MonoBehaviour
 {
-    [SerializeField] int itemID;
+    [SerializeField] InventoryItemData itemToDrop;
     [SerializeField] float dropChance;
     // Start is called before the first frame update
     public void DropItemCall()
@@ -12,8 +12,6 @@ public class DropItem : MonoBehaviour
         if (Random.Range(0, 100) > dropChance)
             return;
 
-        GameObject itemToDrop = ListOfItems.GetItemById(itemID);
-
-        Instantiate(itemToDrop, this.transform.position, itemToDrop.transform.rotation);
+        Instantiate(itemToDrop.itemPrefab, this.transform.position, Quaternion.identity);
     }
 }

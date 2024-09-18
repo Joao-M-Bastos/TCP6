@@ -6,11 +6,17 @@ public class MetalEnemy : TrashEnemy
 {
     private void Update()
     {
+        RemoveImmunityTime();
+    }
+
+    private void FixedUpdate()
+    {
         StateController();
     }
     public override void OnDie()
     {
-        
+        DropItemOnDeath();
+        PlayParticuleOnDeath();
     }
 
     public override void QuickAttack()

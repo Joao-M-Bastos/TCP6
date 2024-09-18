@@ -21,7 +21,7 @@ public class ReciclerCast : Interactable
         if (itemCast == null)
             return;
 
-        itemCast.GetComponent<Item>().CollectItem();
+        //itemCast.GetComponent<Item>().CollectItem();
     }
 
     public bool HasItem()

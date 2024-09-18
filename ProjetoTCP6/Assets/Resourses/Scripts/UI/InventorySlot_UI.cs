@@ -24,6 +24,8 @@ public class InventorySlot_UI : MonoBehaviour
 
         button = GetComponent<Button>();
 
+        itemSprit.preserveAspect = true;
+
         button?.onClick.AddListener(OnUISlotClick);
         parentDisplay = transform.parent.GetComponent<InventoryDisplay>();
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PaperEnemy : TrashEnemy
+public class PlasticTrashEnemy : TrashEnemy
 {
     private void Update()
     {
@@ -22,8 +22,6 @@ public class PaperEnemy : TrashEnemy
 
     public override void QuickAttack()
     {
-        
-
         switch (attackState)
         {
             case 0:
@@ -69,4 +67,3 @@ public class PaperEnemy : TrashEnemy
         }
     }
 }
-

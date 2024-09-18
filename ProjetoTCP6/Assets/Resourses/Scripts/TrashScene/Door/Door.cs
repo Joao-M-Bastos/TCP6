@@ -18,7 +18,7 @@ public class Door : Interactable
     {
         if (isOpend)
             return;
-
+        /*
         Inventory inventory = FindAnyObjectByType<Inventory>();
 
         if (keyNeeded <= 0 || inventory.HasItem(keyNeeded))
@@ -26,7 +26,7 @@ public class Door : Interactable
             animator.SetBool("Open", true);
             isOpend = true;
             inventory.RemoveItem(keyNeeded);
-        } 
+        } */
     }
 
     public override void Interact()

@@ -21,37 +21,37 @@ public abstract class TrashEnemy : BaseEnemy
 
         if (!PlayerFound())
             return;
-        /*
+        
         switch (currentState)
         {
-            case EnemyBaseState.Idle:
+            case EnemyState.Idle:
                 if (IsThisClose(viewDistance))
                 {
-                    ChageState(EnemyBaseState.Following);
+                    ChageState(EnemyState.Following);
                     DecideAttack();
                 }
                 break;
 
-            case EnemyBaseState.Following:
+            case EnemyState.Following:
 
                 if (IsThisClose(attackDistance + attackDecided))
-                    ChageState(EnemyBaseState.Attack);
+                    ChageState(EnemyState.Attack);
                 else if (IsThisClose(viewDistance))
                     MoveFoward();
                 break;
 
-            case EnemyBaseState.Attack:
+            case EnemyState.Attack:
                 if (tired)
                 {
                     currentCooldown = 4;
-                    ChageState(EnemyBaseState.Resting);
+                    ChageState(EnemyState.Resting);
                 }
 
                 Attack();
 
                 break;
 
-            case EnemyBaseState.Resting:
+            case EnemyState.Resting:
 
                 tired = false;
                 attackState = 0;
@@ -60,12 +60,11 @@ public abstract class TrashEnemy : BaseEnemy
                 transform.position += transform.right * speed * Time.deltaTime;
 
                 if (currentCooldown <= 0)
-                    ChageState(EnemyBaseState.Idle);
+                    ChageState(EnemyState.Idle);
 
                 break;
         }
 
-        */
     }
 
     public override void Attack()

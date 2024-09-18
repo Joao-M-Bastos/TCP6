@@ -14,18 +14,29 @@ public class MouseItemData : MonoBehaviour
 
     public InventorySlot AssingInventorySlot;
 
+    private Transform playerTransform;
+
     internal void UpdateMouseSlot(InventorySlot invSlot)
     {
         AssingInventorySlot.AssingItem(invSlot);
-        itemSprite.sprite = invSlot.ItemData.itemsIcon;
-        itemCount.text = invSlot.StackSize.ToString();
+        UpdateMouseSlot();
+    }
+
+    internal void UpdateMouseSlot()
+    {
+        itemSprite.sprite = AssingInventorySlot.ItemData.itemsIcon;
+        itemCount.text = AssingInventorySlot.StackSize.ToString();
         itemSprite.color = Color.white;
     }
 
     private void Awake()
     {
+        itemSprite.preserveAspect = true;
         itemSprite.color = Color.clear;
         itemCount.text = null;
+
+        playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        
     }
 
     private void Update()
@@ -35,9 +46,20 @@ public class MouseItemData : MonoBehaviour
             transform.position = Mouse.current.position.ReadValue();
             
 
-            if(Mouse.current.leftButton.isPressed && !IsPointerOverUI())
+            if(Mouse.current.leftButton.wasPressedThisFrame && !IsPointerOverUI())
             {
-                ClearSlot();
+                if (AssingInventorySlot.ItemData.itemPrefab != null)
+                {
+                    Instantiate(AssingInventorySlot.ItemData.itemPrefab, playerTransform.position + playerTransform.forward * 1.5f, Quaternion.identity);
+                    
+                    if(AssingInventorySlot.StackSize > 1)
+                    {
+                        AssingInventorySlot.AddToStack(-1);
+                        UpdateMouseSlot();
+                    }
+                    else
+                        ClearSlot();
+                }
             }
         }
     }

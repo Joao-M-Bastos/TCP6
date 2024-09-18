@@ -5,29 +5,28 @@ using UnityEngine;
 
 public class Recicler : MonoBehaviour
 {
-    [SerializeField] ReciclerCast cast;
-    [SerializeField] int materialID;
+    [SerializeField] int materialID, itemToGenerate;
     [SerializeField] int amountNeeded;
-    [SerializeField] int itemToGenerate;
+    [SerializeField] ItemDataBase itemDatabase;
+    bool itemGenerated;
     int currentAmount;
 
-    private void OnTriggerEnter(Collider other)
+    public void AddItem(InventoryItemData itemToAdd)
     {
-        if (other.gameObject.TryGetComponent(out Item itemCollided) && itemCollided.GetItemId() == materialID)
+        if (itemToAdd.ID == materialID)
         {
-            itemCollided.DeleteItem();
             currentAmount++;
+            CheckForItem();
         }
-    }
-
-    private void Update()
-    {
-        CheckForItem();
+        else
+        {
+            currentAmount = 0;
+        }
     }
 
     private void CheckForItem()
     {
-       if(currentAmount >= amountNeeded && !cast.HasItem())
+       if(currentAmount >= amountNeeded )
         {
             GenerateItem();
             currentAmount -= amountNeeded;
@@ -36,6 +35,10 @@ public class Recicler : MonoBehaviour
 
     private void GenerateItem()
     {
-        cast.CastItem(itemToGenerate);
+        if (itemGenerated)
+            return;
+
+        itemGenerated = true;
+        Instantiate(itemDatabase.GetItem(itemToGenerate).itemPrefab, transform.position, Quaternion.identity);
     }
 }
