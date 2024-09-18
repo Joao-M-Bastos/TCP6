@@ -25,16 +25,19 @@ public class GlassEnemy : TrashEnemy
         switch (attackState)
         {
             case 0:
-                currentCooldown = 0.3f;
+                enemyAnimator.SetTrigger("BuildUp");
+                currentCooldown = 0.5f;
                 attackState = 1;
                 break;
             case 1:
+                enemyAnimator.SetTrigger("Attacking");
                 rb.AddForce(transform.forward * 5, ForceMode.VelocityChange);
-                ActiveAttackCollider(0.2f);
-                currentCooldown = 0.5f;
+                ActiveAttackCollider();
+                currentCooldown = 1f;
                 attackState = 2;
                 break;
             case 2:
+                enemyAnimator.SetTrigger("Idle");
                 tired = true;
                 break;
         }
@@ -46,19 +49,27 @@ public class GlassEnemy : TrashEnemy
         switch (attackState)
         {
             case 0:
+                enemyAnimator.SetTrigger("BuildUp");
                 currentCooldown = 0.5f;
                 attackState = 1;
                 break;
             case 1:
                 AddToDamage(1);
-                ActiveAttackCollider(0.5f);
+                enemyAnimator.SetTrigger("Attacking");
+                ActiveAttackCollider();
                 currentCooldown = 1f;
                 attackState = 2;
                 break;
             case 2:
+                enemyAnimator.SetTrigger("Idle");
                 AddToDamage(0);
                 tired = true;
                 break;
         }
+    }
+
+    public override void OnTakeDamage()
+    {
+
     }
 }

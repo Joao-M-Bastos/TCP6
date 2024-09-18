@@ -10,6 +10,9 @@ public abstract class TrashEnemy : BaseEnemy
     protected int attackDecided;
 
     public int attackState;
+
+    [SerializeField] protected Animator bodyAnimator;
+    [SerializeField] protected Animator enemyAnimator;
     private void Start()
     {
         PlayerFound();
@@ -25,6 +28,7 @@ public abstract class TrashEnemy : BaseEnemy
         switch (currentState)
         {
             case EnemyState.Idle:
+                DeactivateCollider();
                 if (IsThisClose(viewDistance))
                 {
                     ChageState(EnemyState.Following);
@@ -33,7 +37,7 @@ public abstract class TrashEnemy : BaseEnemy
                 break;
 
             case EnemyState.Following:
-
+                DeactivateCollider();
                 if (IsThisClose(attackDistance + attackDecided))
                     ChageState(EnemyState.Attack);
                 else if (IsThisClose(viewDistance))
@@ -56,10 +60,12 @@ public abstract class TrashEnemy : BaseEnemy
                 tired = false;
                 attackState = 0;
 
+                DeactivateCollider();
+
                 LookAtPlayer();
                 transform.position += transform.right * speed * Time.deltaTime;
 
-                if (currentCooldown <= 0)
+                if (currentCooldown <= 0 || !IsThisClose(viewDistance))
                     ChageState(EnemyState.Idle);
 
                 break;

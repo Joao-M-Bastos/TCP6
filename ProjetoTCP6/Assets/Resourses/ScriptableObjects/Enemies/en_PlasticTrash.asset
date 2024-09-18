@@ -19,7 +19,7 @@ MonoBehaviour:
     type: 3}
   life: 2
   damage: 1
-  speed: 6
+  speed: 5
   viewDistance: 8
   attackDistance: 2
   baseAttackCooldown: 0.4

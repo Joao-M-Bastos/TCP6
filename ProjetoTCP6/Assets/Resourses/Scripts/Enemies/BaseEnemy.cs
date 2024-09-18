@@ -101,14 +101,12 @@ public abstract class BaseEnemy : MonoBehaviour
     public void ActiveAttackCollider()
     {
         attackAreaCollider.enabled = true;
-        attackAreaActive = 0.2f;
         attackCooldown = baseAttackCooldown;
     }
-    public void ActiveAttackCollider(float extraActiveTime)
+
+    public void DeactivateCollider()
     {
-        attackAreaCollider.enabled = true;
-        attackAreaActive = 0.2f + extraActiveTime;
-        attackCooldown = baseAttackCooldown;
+        attackAreaCollider.enabled = false;
     }
 
     public void TakeHit(int damage)
@@ -119,10 +117,13 @@ public abstract class BaseEnemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        
         life -= damage;
         immunityTime = 0.5f;
         if (life <= 0)
             Die();
+
+        OnTakeDamage();
     }
 
     public void Die()
@@ -197,6 +198,7 @@ public abstract class BaseEnemy : MonoBehaviour
     #region Abstract
 
     public abstract void OnDie();
+    public abstract void OnTakeDamage();
 
     public abstract void Attack();
     #endregion

@@ -16,6 +16,9 @@ public class BossMorterAttack : BossAttacks
 
     public void ShootMorter()
     {
+        if (aim.PlayerTransform == null)
+            return;
+
         GameObject morterTarget = Instantiate(projectilePrefab, aim.PlayerTransform.position - (Vector3.up* aim.PlayerTransform.position.y), Quaternion.identity);
 
         morterTarget.GetComponent<BossMorterTarget>().Inicialize(bulletSpeed * speedModifier, damageModifier + attackDamage);

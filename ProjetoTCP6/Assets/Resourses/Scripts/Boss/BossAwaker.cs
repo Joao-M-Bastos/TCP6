@@ -15,7 +15,7 @@ public class BossAwaker : MonoBehaviour
             if (awakeHim)
                 boss.AwakeBoss();
             else
-                boss.GoToSLeed();
+                boss.GoToSleep();
 
             
         }

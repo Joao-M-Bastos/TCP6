@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class MetalEnemy : TrashEnemy
 {
+    [SerializeField] GameObject[] variations;
+
+    private void Start()
+    {
+        variations[Random.Range(0,2)].SetActive(false);
+        PlayerFound();
+    }
     private void Update()
     {
         RemoveImmunityTime();
@@ -25,16 +32,19 @@ public class MetalEnemy : TrashEnemy
         switch (attackState)
         {
             case 0:
-                currentCooldown = 0.5f;
+                enemyAnimator.SetTrigger("BuildUp");
+                currentCooldown = 0.8f;
                 attackState = 1;
                 break;
             case 1:
+                enemyAnimator.SetTrigger("Attacking");
                 rb.AddForce(transform.forward, ForceMode.VelocityChange);
-                ActiveAttackCollider(0.5f);
-                currentCooldown = 0.5f;
+                ActiveAttackCollider();
+                currentCooldown = 1f;
                 attackState = 2;
                 break;
             case 2:
+                enemyAnimator.SetTrigger("Idle");
                 tired = true;
                 break;
         }
@@ -48,19 +58,27 @@ public class MetalEnemy : TrashEnemy
         switch (attackState)
         {
             case 0:
+                enemyAnimator.SetTrigger("BuildUp");
                 currentCooldown = 0.5f;
                 attackState = 1;
                 break;
             case 1:
+                enemyAnimator.SetTrigger("Attacking");
                 AddToDamage(1);
-                ActiveAttackCollider(0.5f);
+                ActiveAttackCollider();
                 currentCooldown = 1f;
                 attackState = 2;
                 break;
             case 2:
+                enemyAnimator.SetTrigger("Idle");
                 AddToDamage(0);
                 tired = true;
                 break;
         }
+    }
+
+    public override void OnTakeDamage()
+    {
+
     }
 }

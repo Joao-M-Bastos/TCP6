@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class BossBehaviour : BaseEnemy
@@ -9,6 +10,11 @@ public class BossBehaviour : BaseEnemy
     [SerializeField] private BossAttacks[] possibleAttacks;
     [SerializeField] private float restingCooldown;
     [HideInInspector] public bool isAwoke = false;
+
+    private int combatLife;
+
+    [SerializeField] GameObject healthBarCanva;
+    [SerializeField] Slider healthBarSlider;
 
     protected bool isAttacking;
 
@@ -23,6 +29,7 @@ public class BossBehaviour : BaseEnemy
     private void SetValues()
     {
         life = enemyData.life + RecicleCounter.instance.RecicleCount;
+        combatLife = life;
         damage = enemyData.damage + (int)(RecicleCounter.instance.RecicleCount / 2);
         speed = 1 + (int)(RecicleCounter.instance.RecicleCount / 10);
     }
@@ -37,8 +44,8 @@ public class BossBehaviour : BaseEnemy
         StateController();
     }
 
-    public void AwakeBoss() { isAwoke = true; SetValues(); }
-    public void GoToSLeed() { isAwoke = false; }
+    public void AwakeBoss() { isAwoke = true; SetValues(); healthBarCanva.SetActive(true); }
+    public void GoToSleep() { isAwoke = false; healthBarCanva.SetActive(false); }
 
     public void StateController()
     {
@@ -48,6 +55,7 @@ public class BossBehaviour : BaseEnemy
         switch (currentState)
         {
             case EnemyState.Idle:
+
                 if (isAwoke)
                     ChageState(EnemyState.Resting);
                 
@@ -99,5 +107,17 @@ public class BossBehaviour : BaseEnemy
     public override void Attack()
     {
 
+    }
+
+    public override void OnTakeDamage()
+    {
+        UpdateHealthBar();
+        
+    }
+
+    private void UpdateHealthBar()
+    {
+        Debug.Log((float)life / (float)combatLife +"  "+ (float)combatLife / (float)life);
+        healthBarSlider.value = (float)life / (float)combatLife;
     }
 }
