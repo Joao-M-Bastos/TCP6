@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 6
   displayName: Glass Key
   description: Opens Glass Door
-  itemsIcon: {fileID: 21300000, guid: a729514cc7344a842b2f5d192cc6340d, type: 3}
+  itemsIcon: {fileID: 21300000, guid: af60208c48a33444b97f223b2a81e754, type: 3}
   maxStackSize: 1
   itemPrefab: {fileID: 2733493166156245927, guid: 7879fc58da61bc74bad2f02e62c58686,
     type: 3}

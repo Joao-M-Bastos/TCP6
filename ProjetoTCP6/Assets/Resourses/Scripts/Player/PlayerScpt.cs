@@ -33,6 +33,7 @@ public class PlayerScpt : MonoBehaviour
     RightHand rightHand;
     Animator animator;
     [SerializeField] MeshRenderer[] renderers;
+    [SerializeField] public AudioSource walkingSound;
 
 
     //Ponteiros

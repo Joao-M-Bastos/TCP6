@@ -17,5 +17,8 @@ public class ChestInventory : InventoryHolder, IInteractable
     {
     }
 
-    
+    public void HasInteracted(out bool hasInteracted)
+    {
+        hasInteracted = false;
+    }
 }

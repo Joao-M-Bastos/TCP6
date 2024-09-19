@@ -10,4 +10,6 @@ public interface IInteractable
     public void Interact(Interactor interactor, out bool interactionSuccess);
 
     public void EndInteraction();
+
+    public void HasInteracted(out bool hasInteracted);
 }

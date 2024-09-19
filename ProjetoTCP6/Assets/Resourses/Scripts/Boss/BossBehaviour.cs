@@ -10,6 +10,7 @@ public class BossBehaviour : BaseEnemy
     [SerializeField] private BossAttacks[] possibleAttacks;
     [SerializeField] private float restingCooldown;
     [HideInInspector] public bool isAwoke = false;
+    [SerializeField] AudioSource hurtSound;
 
     private int combatLife;
 
@@ -65,7 +66,7 @@ public class BossBehaviour : BaseEnemy
                 if (restingCooldown <= 0)
                     ChageState(EnemyState.Attack);
                 else
-                    restingCooldown -= Time.deltaTime;
+                    restingCooldown -= Time.deltaTime * speed;
 
                 break;
 
@@ -82,8 +83,8 @@ public class BossBehaviour : BaseEnemy
 
     private void DecideAttack()
     {
-        Attack(0);
-        //Attack(Random.Range(0, possibleAttacks.Length));
+        //Attack(0);
+        Attack(Random.Range(0, possibleAttacks.Length));
     }
 
     public void Attack(int i)
@@ -112,7 +113,7 @@ public class BossBehaviour : BaseEnemy
     public override void OnTakeDamage()
     {
         UpdateHealthBar();
-        
+        hurtSound.Play();
     }
 
     private void UpdateHealthBar()

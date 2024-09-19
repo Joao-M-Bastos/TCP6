@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d10269d62778c074eae8c8fc74ce44c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pressE: {fileID: 0}
   interacionPoint: {fileID: 4306549561844602982}
   interacionLayer:
     serializedVersion: 2

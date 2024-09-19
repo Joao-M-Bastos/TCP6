@@ -34,6 +34,15 @@ public class RightHand : MonoBehaviour
         currentWeapon = currentWeaponObj.GetComponent<BaseWeapon>();
     }
 
+    public void SetSword(WeaponData data)
+    {
+        if (currentWeaponObj != null)
+            Destroy(currentWeaponObj);
+
+        currentWeaponObj = Instantiate(data.weaponPrefab, this.transform);
+        currentWeapon = currentWeaponObj.GetComponent<BaseWeapon>();
+    }
+
     public bool IsWeaponActive()
     {
         return currentWeapon.isWeaponActive;

@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 7
   displayName: Metal Key
   description: Opens Metal Door
-  itemsIcon: {fileID: 21300000, guid: a729514cc7344a842b2f5d192cc6340d, type: 3}
+  itemsIcon: {fileID: 21300000, guid: cc4304a02d6602b469ee0d232718d78b, type: 3}
   maxStackSize: 1
   itemPrefab: {fileID: 8576224414610405156, guid: 460725d4fc1ef824eab8922386cc9208,
     type: 3}

@@ -29,12 +29,15 @@ public class ItemPickup : MonoBehaviour
         InventoryHolder inventory = other.GetComponent<InventoryHolder>();
 
         if (inventory && inventory.InventorySystem.AddToInventory(itemData, 1))
+        {
+            Camera.main.gameObject.GetComponent<AudioSource>().Play();
             Destroy(gameObject);
-        
+        }
+
         else if (other.TryGetComponent(out Recicler recicler))
         {
             recicler.AddItem(this.itemData, out bool consumed);
-            if(consumed)
+            if (consumed)
                 Destroy(gameObject);
         }
     }

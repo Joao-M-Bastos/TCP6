@@ -31,7 +31,7 @@ public abstract class TrashEnemy : BaseEnemy
         {
             case EnemyState.Idle:
                 DeactivateCollider();
-                if (IsThisClose(viewDistance))
+                if ( IsThisClose(viewDistance) && IsInDirectLiveOfSight())
                 {
                     ChageState(EnemyState.Following);
                 }
@@ -39,10 +39,13 @@ public abstract class TrashEnemy : BaseEnemy
 
             case EnemyState.Following:
                 DeactivateCollider();
-                if (IsThisClose(attackDistance + attackDecided))
+                MoveFoward();
+
+                if (IsThisClose(attackDistance) && IsInDirectLiveOfSight())
                     ChageState(EnemyState.Attack);
-                else if (IsThisClose(viewDistance))
-                    MoveFoward();
+                else if (!IsThisClose(viewDistance) || !IsInDirectLiveOfSight())
+                    ChageState(EnemyState.Attack);
+                
                 break;
 
             case EnemyState.Attack:
@@ -66,7 +69,7 @@ public abstract class TrashEnemy : BaseEnemy
                 LookAtPlayer();
                 transform.position += transform.right * speed * Time.deltaTime;
 
-                if (currentCooldown <= 0 || !IsThisClose(viewDistance))
+                if (currentCooldown <= 0 || !IsThisClose(viewDistance) || !IsInDirectLiveOfSight())
                     ChageState(EnemyState.Idle);
 
                 break;

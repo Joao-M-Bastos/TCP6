@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlasticEnemy : TrashEnemy
 {
     [SerializeField] GameObject[] variations;
+    [SerializeField] AudioSource deathSound;
 
     private void Start()
     {
@@ -25,6 +26,7 @@ public class PlasticEnemy : TrashEnemy
     {
         DropItemOnDeath();
         PlayParticuleOnDeath();
+        deathSound.Play();
     }
 
     public override void QuickAttack()
@@ -78,5 +80,6 @@ public class PlasticEnemy : TrashEnemy
     public override void OnTakeDamage()
     {
         FlashRender();
+        
     }
 }

@@ -45,6 +45,11 @@ public class Door : MonoBehaviour, IInteractable
 
     public void EndInteraction()
     {
-        throw new System.NotImplementedException();
+
+    }
+
+    public void HasInteracted(out bool hasInteracted)
+    {
+        hasInteracted = isOpend;
     }
 }

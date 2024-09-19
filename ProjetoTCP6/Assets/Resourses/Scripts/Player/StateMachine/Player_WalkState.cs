@@ -20,6 +20,10 @@ public class Player_WalkState : PlayerBaseState
     {
         Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
 
+        if (direction.magnitude != 0 && !player.walkingSound.isPlaying)
+            player.walkingSound.Play();
+        else if (direction.magnitude == 0 && player.walkingSound.isPlaying)
+            player.walkingSound.Stop();
 
         player.PlayerRB.AddForce(direction * Time.deltaTime * player.Aceleration, ForceMode.VelocityChange);
 

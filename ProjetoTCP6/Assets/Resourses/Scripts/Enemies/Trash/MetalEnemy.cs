@@ -38,7 +38,7 @@ public class MetalEnemy : TrashEnemy
                 break;
             case 1:
                 enemyAnimator.SetTrigger("Attacking");
-                rb.AddForce(transform.forward, ForceMode.VelocityChange);
+                rb.AddForce(transform.forward * 10, ForceMode.VelocityChange);
                 ActiveAttackCollider();
                 currentCooldown = 1f;
                 attackState = 2;

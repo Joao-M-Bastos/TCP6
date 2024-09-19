@@ -7,7 +7,7 @@ public class BossMorterTarget : MonoBehaviour
     [SerializeField] GameObject projectile;
     [SerializeField] Transform spawnPoint;
 
-    [SerializeField] GameObject trashToGenerate;
+    [SerializeField] EnemyData[] trashToGenerate;
 
     float bulletSpeed;
     int damage;
@@ -36,7 +36,8 @@ public class BossMorterTarget : MonoBehaviour
     {
         if(projectileAlreadyInstacieted && spitProjectile == null)
         {
-            //Instantiate(trashToGenerate, this.transform.position, trashToGenerate.transform.rotation);
+            EnemyData corpse = trashToGenerate[Random.Range(0, trashToGenerate.Length)];
+            Instantiate(corpse.enemyPrefab, this.transform.position, corpse.enemyPrefab.transform.rotation);
             Destroy(gameObject);
         }
     }

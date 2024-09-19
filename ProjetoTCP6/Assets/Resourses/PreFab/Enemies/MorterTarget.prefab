@@ -80,7 +80,11 @@ MonoBehaviour:
   projectile: {fileID: 5567225410295001335, guid: 1d8fa60c96d52f041a28e049d2c7992d,
     type: 3}
   spawnPoint: {fileID: 212183227207595689}
-  trashToGenerate: {fileID: 0}
+  trashToGenerate:
+  - {fileID: 11400000, guid: dc3161faa706ae04a994c6455d29a85b, type: 2}
+  - {fileID: 11400000, guid: d68c266b655fa3c4eb3e492522457e71, type: 2}
+  - {fileID: 11400000, guid: 919f7984e62edc94d8fb62db9a16d2fa, type: 2}
+  - {fileID: 11400000, guid: 92fd68ee534ae1b4eb9e0f2465db45dc, type: 2}
 --- !u!1 &7312423246705311609
 GameObject:
   m_ObjectHideFlags: 0

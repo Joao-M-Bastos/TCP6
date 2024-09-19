@@ -23,7 +23,7 @@ public class LifeManager : MonoBehaviour
         }
         else
         {
-            int playerCurrentLife = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScpt>().CurrentLife + 1;
+            int playerCurrentLife = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScpt>().CurrentLife;
 
             if (playerCurrentLife < 0)
                 SetSprite(0);

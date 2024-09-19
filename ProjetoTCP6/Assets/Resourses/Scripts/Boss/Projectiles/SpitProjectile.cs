@@ -11,6 +11,13 @@ public class SpitProjectile : MonoBehaviour
         GetComponent<Rigidbody>().velocity = transform.forward * speed;
     }
 
+    private void Update()
+    {
+        if (transform.position.y < 0)
+            Destroy(this.gameObject);
+        
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))

@@ -151,6 +151,17 @@ public abstract class BaseEnemy : MonoBehaviour
         return true;
     }
 
+    public bool IsInDirectLiveOfSight()
+    {
+        Debug.DrawLine(transform.position, playerTransform.position);
+        if (Physics.Raycast(transform.position, playerTransform.position- transform.position, out RaycastHit hitInfo))
+        {
+            return hitInfo.collider.gameObject.CompareTag("Player");
+        }
+        else
+            return false;
+    }
+
     public bool IsThisClose(float value)
     {
         return DistanceFromPlayer() < value;

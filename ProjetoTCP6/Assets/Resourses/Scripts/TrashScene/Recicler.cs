@@ -8,6 +8,7 @@ public class Recicler : MonoBehaviour
     [SerializeField] int materialID, itemToGenerate;
     [SerializeField] int amountNeeded;
     [SerializeField] ItemDataBase itemDatabase;
+    [SerializeField] GameObject spriteIcon;
     bool isActive;
     bool itemGenerated;
     int currentAmount;
@@ -39,6 +40,7 @@ public class Recicler : MonoBehaviour
     public void ActivateRecicler()
     {
         isActive= true;
+        spriteIcon.SetActive(isActive);
     }
 
     private void CheckForItem()

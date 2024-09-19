@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GlassEnemy : TrashEnemy
 {
+    [SerializeField] AudioSource deathSound;
     private void Update()
     {
         RemoveImmunityTime();
@@ -18,6 +19,7 @@ public class GlassEnemy : TrashEnemy
     {
         DropItemOnDeath();
         PlayParticuleOnDeath();
+        deathSound.Play();
     }
 
     public override void QuickAttack()

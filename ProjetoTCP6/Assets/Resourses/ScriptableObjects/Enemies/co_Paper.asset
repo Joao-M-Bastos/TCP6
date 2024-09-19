@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66a3018ac13acec45b5cf9581faaf4d0, type: 3}
+  m_Name: co_Paper
+  m_EditorClassIdentifier: 
+  ID: 0
+  displayName: Corpse Paper
+  description: Corpse Paper
+  enemyPrefab: {fileID: 4280076498758615629, guid: 8a3ac40a8fb2ad6459983e5e17f7cb6c,
+    type: 3}
+  life: 2
+  damage: 0
+  speed: 0
+  viewDistance: 0
+  attackDistance: 0
+  baseAttackCooldown: 5
