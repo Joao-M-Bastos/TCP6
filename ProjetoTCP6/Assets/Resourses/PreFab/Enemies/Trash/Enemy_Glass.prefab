@@ -57,6 +57,8 @@ MonoBehaviour:
   attackState: 0
   bodyAnimator: {fileID: 0}
   enemyAnimator: {fileID: 2833313724067232351}
+  rendererz:
+  - {fileID: 8807193775410957179}
 --- !u!114 &6798607221729819323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,6 +454,12 @@ PrefabInstance:
 --- !u!4 &8325964269094578008 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7754427410380480943, guid: d380102705c673c468cb94a7bd87124f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1735722895381743351}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &8807193775410957179 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7075144936137100684, guid: d380102705c673c468cb94a7bd87124f,
     type: 3}
   m_PrefabInstance: {fileID: 1735722895381743351}
   m_PrefabAsset: {fileID: 0}

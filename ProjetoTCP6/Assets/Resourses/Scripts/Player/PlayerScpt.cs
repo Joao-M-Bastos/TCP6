@@ -32,6 +32,7 @@ public class PlayerScpt : MonoBehaviour
     Rigidbody playerRB;
     RightHand rightHand;
     Animator animator;
+    [SerializeField] MeshRenderer[] renderers;
 
 
     //Ponteiros
@@ -53,6 +54,7 @@ public class PlayerScpt : MonoBehaviour
     {
         currentLife -= value;
         onPlayerUpdateLife?.Invoke();
+        FlashRender();
         if (currentLife <= 0)
         {
             onPlayerDie?.Invoke();
@@ -86,5 +88,23 @@ public class PlayerScpt : MonoBehaviour
     public void ResetDashTime()
     {
         currentDash = dashCooldown;
+    }
+
+    protected void FlashRender()
+    {
+        foreach (MeshRenderer r in renderers)
+        {
+            r.material.color = Color.red;
+        }
+
+        Invoke("UnFlashRender", 0.4f);
+    }
+
+    protected void UnFlashRender()
+    {
+        foreach (MeshRenderer r in renderers)
+        {
+            r.material.color = Color.white;
+        }
     }
 }

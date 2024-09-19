@@ -237,6 +237,9 @@ MonoBehaviour:
   attackState: 0
   bodyAnimator: {fileID: 0}
   enemyAnimator: {fileID: 1651175146403425418}
+  rendererz:
+  - {fileID: 7359088690729561657}
+  - {fileID: 8554121504552716327}
   variations:
   - {fileID: 8347500714570839999}
   - {fileID: 8112642827816091840}
@@ -464,6 +467,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 980074872932066310}
   m_PrefabAsset: {fileID: 0}
+--- !u!137 &8554121504552716327 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8876512164643597345, guid: 65b5776cf291e044b9eb45deab4a0bf0,
+    type: 3}
+  m_PrefabInstance: {fileID: 980074872932066310}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8975704963164486658 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8145306369089067012, guid: 65b5776cf291e044b9eb45deab4a0bf0,
@@ -563,6 +572,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 994aad5f33b5ea24daa92fcf56073920, type: 3}
+--- !u!137 &7359088690729561657 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3768036891499572551, guid: 994aad5f33b5ea24daa92fcf56073920,
+    type: 3}
+  m_PrefabInstance: {fileID: 5938697297866097534}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8312504789321506139 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2391849738625113637, guid: 994aad5f33b5ea24daa92fcf56073920,

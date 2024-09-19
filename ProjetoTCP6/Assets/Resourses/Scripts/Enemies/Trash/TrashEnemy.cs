@@ -13,6 +13,8 @@ public abstract class TrashEnemy : BaseEnemy
 
     [SerializeField] protected Animator bodyAnimator;
     [SerializeField] protected Animator enemyAnimator;
+
+    [SerializeField]protected SkinnedMeshRenderer[] rendererz;
     private void Start()
     {
         PlayerFound();
@@ -32,7 +34,6 @@ public abstract class TrashEnemy : BaseEnemy
                 if (IsThisClose(viewDistance))
                 {
                     ChageState(EnemyState.Following);
-                    DecideAttack();
                 }
                 break;
 
@@ -77,11 +78,8 @@ public abstract class TrashEnemy : BaseEnemy
     {
         if (currentCooldown > 0 && attackState != 0)
             return;
-
-        if (attackDecided == 0)
-            StrongAttack();
-        else
-            QuickAttack();
+        
+        QuickAttack();
         
     }
 
@@ -92,5 +90,23 @@ public abstract class TrashEnemy : BaseEnemy
     protected void DecideAttack()
     {
         attackDecided = Random.Range(0, 2);
+    }
+
+    protected void FlashRender()
+    {
+        foreach(SkinnedMeshRenderer r in rendererz)
+        {
+            r.material.color = Color.red;
+        }
+        
+        Invoke("UnFlashRender", 0.4f);
+    }
+
+    protected void UnFlashRender()
+    {
+        foreach (SkinnedMeshRenderer r in rendererz)
+        {
+            r.material.color = Color.white;
+        }
     }
 }

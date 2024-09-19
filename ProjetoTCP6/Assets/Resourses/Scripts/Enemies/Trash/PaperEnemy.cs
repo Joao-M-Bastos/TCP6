@@ -74,7 +74,7 @@ public class PaperEnemy : TrashEnemy
 
     public override void OnTakeDamage()
     {
-
+        FlashRender();
     }
 }
 

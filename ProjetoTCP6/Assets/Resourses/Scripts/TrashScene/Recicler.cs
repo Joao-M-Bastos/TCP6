@@ -12,6 +12,8 @@ public class Recicler : MonoBehaviour
     bool itemGenerated;
     int currentAmount;
 
+    [SerializeField]  
+
     public bool IsActive => isActive;
 
     public void AddItem(InventoryItemData itemToAdd, out bool consumed)
@@ -22,6 +24,7 @@ public class Recicler : MonoBehaviour
 
         if (itemToAdd.ID == materialID)
         {
+            consumed = true;
             currentAmount++;
             CheckForItem();
         }
@@ -30,7 +33,7 @@ public class Recicler : MonoBehaviour
             RecicleCounter.instance.AddRecicleAmount();
             currentAmount = 0;
         }
-        consumed = true;
+        
     }
 
     public void ActivateRecicler()

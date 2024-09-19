@@ -173,6 +173,8 @@ MonoBehaviour:
   attackState: 0
   bodyAnimator: {fileID: 0}
   enemyAnimator: {fileID: 1541578599664271630}
+  rendererz:
+  - {fileID: 1137962332221247760}
 --- !u!114 &7819036752919619518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,6 +367,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6ecd062e9e59544a98c705e73753aa7, type: 3}
+--- !u!137 &1137962332221247760 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2204364163810108120, guid: c6ecd062e9e59544a98c705e73753aa7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1251335703809373128}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9180359081937587613 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7942815663531884117, guid: c6ecd062e9e59544a98c705e73753aa7,

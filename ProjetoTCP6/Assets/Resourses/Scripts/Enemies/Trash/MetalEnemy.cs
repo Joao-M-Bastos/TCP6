@@ -79,6 +79,6 @@ public class MetalEnemy : TrashEnemy
 
     public override void OnTakeDamage()
     {
-
+        FlashRender();
     }
 }

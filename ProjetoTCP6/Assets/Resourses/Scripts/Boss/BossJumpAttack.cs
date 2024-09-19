@@ -13,8 +13,8 @@ public class BossJumpAttack : BossAttacks
 
     public void CheckJumpCollision()
     {
-        RaycastHit[] hit = Physics.SphereCastAll(this.transform.position,attackRange, transform.forward,playerMask);
-
+        RaycastHit[] hit = Physics.SphereCastAll(this.transform.position,attackRange, transform.forward,attackRange ,playerMask);
+        
         if(hit.Length > 0)
         {
             PlayerScpt player = hit[0].transform.gameObject.GetComponent<PlayerScpt>();

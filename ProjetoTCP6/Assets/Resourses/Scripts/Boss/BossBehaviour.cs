@@ -117,7 +117,6 @@ public class BossBehaviour : BaseEnemy
 
     private void UpdateHealthBar()
     {
-        Debug.Log((float)life / (float)combatLife +"  "+ (float)combatLife / (float)life);
         healthBarSlider.value = (float)life / (float)combatLife;
     }
 }

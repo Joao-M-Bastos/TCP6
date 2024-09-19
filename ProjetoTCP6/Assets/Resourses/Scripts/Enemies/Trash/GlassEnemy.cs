@@ -70,6 +70,6 @@ public class GlassEnemy : TrashEnemy
 
     public override void OnTakeDamage()
     {
-
+        FlashRender();
     }
 }
