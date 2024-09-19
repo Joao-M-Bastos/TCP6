@@ -10,6 +10,7 @@ public class FinishCanva : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Time.timeScale = 1;
             SceneManager.LoadScene(0);
         }
     }

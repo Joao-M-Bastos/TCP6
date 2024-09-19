@@ -12,6 +12,9 @@ public class BossBehaviour : BaseEnemy
     [HideInInspector] public bool isAwoke = false;
     [SerializeField] AudioSource hurtSound;
 
+    public delegate void BossDeath();
+    public static BossDeath bossDeath;
+
     private int combatLife;
 
     [SerializeField] GameObject healthBarCanva;
@@ -96,7 +99,7 @@ public class BossBehaviour : BaseEnemy
 
     public override void OnDie()
     {
-
+        bossDeath?.Invoke();
     }
 
     public void FinishAttack()

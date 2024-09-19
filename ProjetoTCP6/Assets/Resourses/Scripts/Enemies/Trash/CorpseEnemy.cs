@@ -20,6 +20,7 @@ public class CorpseEnemy : BaseEnemy
     // Update is called once per frame
     void Update()
     {
+        RemoveImmunityTime();
         currentCooldown -= Time.deltaTime;
         if(currentCooldown < 0)
         {

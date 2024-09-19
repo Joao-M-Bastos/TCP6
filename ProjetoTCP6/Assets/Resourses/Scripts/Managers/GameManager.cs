@@ -9,11 +9,20 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         PlayerScpt.onPlayerDie += PlayerDeath;
+        BossBehaviour.bossDeath += BossDeath;
     }
     public void PlayerDeath()
     {
         gameEnded = true;
+        //Time.timeScale = 0;
         canvasManager.ChangeCanvas(CanvasStates.GameOver);
+    }
+
+    public void BossDeath()
+    {
+        gameEnded = true;
+        Time.timeScale = 0;
+        canvasManager.ChangeCanvas(CanvasStates.Win);
     }
 
     private void Update()
