@@ -25,7 +25,7 @@ public class Interactor : MonoBehaviour
             {
                 IInteractable interactable = colliders[i].GetComponent<IInteractable>();
 
-                interactable.HasInteracted(out bool hasInteracted);
+                interactable.HasInteracted(this, out bool hasInteracted);
 
                 if (!hasInteracted)
                     activatePressE =true;

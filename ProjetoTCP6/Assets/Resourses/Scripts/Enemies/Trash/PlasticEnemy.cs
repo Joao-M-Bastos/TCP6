@@ -66,7 +66,7 @@ public class PlasticEnemy : TrashEnemy
                 enemyAnimator.SetTrigger("Attacking");
                 AddToDamage(1);
                 ActiveAttackCollider();
-                currentCooldown = 1f;
+                currentCooldown = 0.5f;
                 attackState = 2;
                 break;
             case 2:
@@ -80,6 +80,8 @@ public class PlasticEnemy : TrashEnemy
     public override void OnTakeDamage()
     {
         FlashRender();
-        
+
+        if (currentState == EnemyState.Resting && Random.Range(0,2) == 1)
+            ChageState(EnemyState.Following);
     }
 }

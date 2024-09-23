@@ -51,7 +51,7 @@ public abstract class TrashEnemy : BaseEnemy
             case EnemyState.Attack:
                 if (tired)
                 {
-                    currentCooldown = 4;
+                    currentCooldown = 2;
                     ChageState(EnemyState.Resting);
                 }
 
@@ -69,7 +69,7 @@ public abstract class TrashEnemy : BaseEnemy
                 LookAtPlayer();
                 transform.position += transform.right * speed * Time.deltaTime;
 
-                if (currentCooldown <= 0 || !IsThisClose(viewDistance) || !IsInDirectLiveOfSight())
+                if (currentCooldown <= 0 || !IsThisClose(viewDistance))
                     ChageState(EnemyState.Idle);
 
                 break;

@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 2835270866893299323}
   - component: {fileID: 2652724086405210087}
   - component: {fileID: 768417140242561409}
+  - component: {fileID: 1760704427555860262}
   m_Layer: 0
   m_Name: Corpse_PaperTrash
   m_TagString: Untagged
@@ -134,6 +135,20 @@ MonoBehaviour:
   enemyToSpawn: {fileID: 11400000, guid: eee7c3c8c06015241aa7420f131d1e56, type: 2}
   skinnedRenderer:
   - {fileID: 1137962332221247760}
+--- !u!114 &1760704427555860262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4280076498758615629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc3efd72c18ca544b5cc5c7ca69cfa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemToDrop: {fileID: 11400000, guid: aff49c6ed4521ec449c7e6aeff805f8f, type: 2}
+  dropChance: 100
 --- !u!1001 &1251335703809373128
 PrefabInstance:
   m_ObjectHideFlags: 0

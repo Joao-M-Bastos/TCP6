@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 0
   displayName: Paper Trash
   description: Paper
-  itemsIcon: {fileID: 21300000, guid: 7f6a61cc75ad24d4fa72884683da9a98, type: 3}
+  itemsIcon: {fileID: 21300000, guid: 4514097e42ff4d344a041d467351850f, type: 3}
   maxStackSize: 3
   itemPrefab: {fileID: 2733493166156245927, guid: 7a54d888d4ec2114ba206094be619604,
     type: 3}

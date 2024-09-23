@@ -28,14 +28,14 @@ public class GlassEnemy : TrashEnemy
         {
             case 0:
                 enemyAnimator.SetTrigger("BuildUp");
-                currentCooldown = 0.5f;
+                currentCooldown = 1f;
                 attackState = 1;
                 break;
             case 1:
                 enemyAnimator.SetTrigger("Attacking");
-                rb.AddForce(transform.forward * 5, ForceMode.VelocityChange);
+                rb.AddForce(transform.forward * 4, ForceMode.VelocityChange);
                 ActiveAttackCollider();
-                currentCooldown = 1f;
+                currentCooldown = 0.5f;
                 attackState = 2;
                 break;
             case 2:
@@ -73,5 +73,8 @@ public class GlassEnemy : TrashEnemy
     public override void OnTakeDamage()
     {
         FlashRender();
+
+        if(currentState == EnemyState.Resting && Random.Range(0, 2) == 1)
+            ChageState(EnemyState.Following);   
     }
 }

@@ -31,7 +31,7 @@ public class RecicleLever : MonoBehaviour, IInteractable
 
     }
 
-    public void HasInteracted(out bool hasInteracted)
+    public void HasInteracted(Interactor interactor, out bool hasInteracted)
     {
         hasInteracted = recicler.IsActive;
     }

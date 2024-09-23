@@ -4,9 +4,26 @@ using UnityEngine;
 
 public class StaticInventoryDisplay : InventoryDisplay
 {
-    [SerializeField] private InventoryHolder inventoryHolder;
-    [SerializeField] private InventorySlot_UI[] slots;
-    protected override void Start()
+    [SerializeField] protected InventoryHolder inventoryHolder;
+    [SerializeField] protected InventorySlot_UI[] slots;
+
+    virtual protected void OnEnable()
+    {
+       
+    }
+
+    virtual protected void OnDisable()
+    {
+        
+    }
+
+
+    private void Start()
+    {
+        RefreshInventory();
+    }
+
+    protected void RefreshInventory()
     {
         if (inventoryHolder != null)
         {

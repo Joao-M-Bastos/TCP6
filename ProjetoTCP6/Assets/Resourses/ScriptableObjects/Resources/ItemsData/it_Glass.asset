@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 2
   displayName: Glass Item
   description: Glass
-  itemsIcon: {fileID: 21300000, guid: 58f632ea1a39e9c4297c4f73bb5252e3, type: 3}
+  itemsIcon: {fileID: 21300000, guid: 422f717f339fabd4d9d64b18045c59a8, type: 3}
   maxStackSize: 3
   itemPrefab: {fileID: 2733493166156245927, guid: edd0dca062259614a9a360fdb3f7a604,
     type: 3}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum CanvasStates{
     InGame,
@@ -31,6 +32,7 @@ public class CanvasManager : MonoBehaviour
     public void ChangeCanvas(CanvasStates state)
     {
         currentState = state;
+
 
         InGameCanvas.SetActive(currentState == CanvasStates.InGame);
 

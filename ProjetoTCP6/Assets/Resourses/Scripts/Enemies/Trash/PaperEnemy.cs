@@ -28,14 +28,14 @@ public class PaperEnemy : TrashEnemy
         {
             case 0:
                 enemyAnimator.SetTrigger("BuildUp");
-                currentCooldown = 0.4f;
+                currentCooldown = 0.6f;
                 attackState = 1;
                 break;
             case 1:
                 enemyAnimator.SetTrigger("Attacking");
                 rb.AddForce(transform.forward * 5, ForceMode.VelocityChange);
                 ActiveAttackCollider();
-                currentCooldown = 1f;
+                currentCooldown = 0.6f;
                 attackState = 2;
                 break;
             case 2:
@@ -75,6 +75,9 @@ public class PaperEnemy : TrashEnemy
     public override void OnTakeDamage()
     {
         FlashRender();
+
+        if (currentState == EnemyState.Resting && Random.Range(0, 2) == 1)
+            ChageState(EnemyState.Following);
     }
 }
 

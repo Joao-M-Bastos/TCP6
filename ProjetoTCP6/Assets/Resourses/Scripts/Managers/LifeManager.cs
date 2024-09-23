@@ -5,11 +5,22 @@ using UnityEngine.UI;
 
 public class LifeManager : MonoBehaviour
 {
-    [SerializeField] UnityEngine.UI.Image lifeBarImage;
+    Image lifeBarImage;
     [SerializeField] Sprite[] lifeSprites;
     // Start is called before the first frame update
 
     private void Awake()
+    {
+        lifeBarImage = GetComponent<Image>();
+        
+    }
+
+    public void OnDisable()
+    {
+        PlayerScpt.onPlayerUpdateLife -= UpdateLifeBar;
+    }
+
+    public void OnEnable()
     {
         PlayerScpt.onPlayerUpdateLife += UpdateLifeBar;
     }

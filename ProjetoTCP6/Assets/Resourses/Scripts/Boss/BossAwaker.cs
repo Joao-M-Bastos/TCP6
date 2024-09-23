@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossAwaker : MonoBehaviour
 {
     [SerializeField] BossBehaviour boss;
+    [SerializeField] GameObject bossHealthBar;
     [SerializeField] bool awakeHim;
 
 
@@ -17,7 +18,7 @@ public class BossAwaker : MonoBehaviour
             else
                 boss.GoToSleep();
 
-            
+            bossHealthBar.SetActive(awakeHim);
         }
     }
 

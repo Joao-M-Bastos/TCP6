@@ -80,5 +80,7 @@ public class MetalEnemy : TrashEnemy
     public override void OnTakeDamage()
     {
         FlashRender();
+        if (currentState == EnemyState.Resting && Random.Range(0, 2) == 1)
+            ChageState(EnemyState.Following);
     }
 }

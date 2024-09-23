@@ -11,5 +11,5 @@ public interface IInteractable
 
     public void EndInteraction();
 
-    public void HasInteracted(out bool hasInteracted);
+    public void HasInteracted(Interactor interactor, out bool hasInteracted);
 }

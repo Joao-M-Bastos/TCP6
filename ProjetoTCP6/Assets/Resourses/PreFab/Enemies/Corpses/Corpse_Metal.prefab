@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 2652724086405210087}
   - component: {fileID: 5133421927219943786}
   - component: {fileID: 316366347317066355}
+  - component: {fileID: 8923361288116315457}
   m_Layer: 0
   m_Name: Corpse_Metal
   m_TagString: Untagged
@@ -136,6 +137,20 @@ MonoBehaviour:
   skinnedRenderer:
   - {fileID: 7359088690729561657}
   - {fileID: 8554121504552716327}
+--- !u!114 &8923361288116315457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4280076498758615629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc3efd72c18ca544b5cc5c7ca69cfa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemToDrop: {fileID: 11400000, guid: 1c3abc2c60ffffb4da29b4c136a46444, type: 2}
+  dropChance: 100
 --- !u!1001 &980074872932066310
 PrefabInstance:
   m_ObjectHideFlags: 0

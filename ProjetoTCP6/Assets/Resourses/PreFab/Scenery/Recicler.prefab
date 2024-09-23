@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4656941591668591187}
-  m_Layer: 9
+  - component: {fileID: 4078211544950883296}
+  m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,6 +34,27 @@ Transform:
   - {fileID: 3329865785694837332}
   m_Father: {fileID: 1086843023036632363}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4078211544950883296
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483534871191626856}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5565886, y: 1.6825906, z: 2.5701444}
+  m_Center: {x: 0.00415349, y: 0.3412953, z: 0.0051988363}
 --- !u!1 &1829537620392318475
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,8 +66,7 @@ GameObject:
   - component: {fileID: 1086843023036632363}
   - component: {fileID: 2145913829801795135}
   - component: {fileID: 1239369262651102303}
-  - component: {fileID: 2332029258404648677}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Recicler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,8 +109,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.28, y: 1.5, z: 0.103079796}
-  m_Center: {x: 0, y: 0, z: -0.9987464}
+  m_Size: {x: 1.28, y: 1.5, z: 0.11053693}
+  m_Center: {x: 0, y: 0, z: -0.8000459}
 --- !u!114 &1239369262651102303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,27 +127,9 @@ MonoBehaviour:
   itemToGenerate: 4
   amountNeeded: 1
   itemDatabase: {fileID: 11400000, guid: 9f59616b98c652d40bd0d34a31bde669, type: 2}
---- !u!65 &2332029258404648677
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1829537620392318475}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.6178722, y: 2.1600592, z: 2.5745115}
-  m_Center: {x: 0.020168304, y: 0.16000473, z: -0.0056681633}
+  spriteIcon: {fileID: 0}
+  dicasText: {fileID: 0}
+  tips: []
 --- !u!1 &2777195982526944869
 GameObject:
   m_ObjectHideFlags: 0

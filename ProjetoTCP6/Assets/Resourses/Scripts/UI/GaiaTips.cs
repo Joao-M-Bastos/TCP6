@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class GaiaTips : MonoBehaviour, IInteractable
 {
+    Transform playerTransform;
     [SerializeField] TextMeshProUGUI dicasText;
 
     [SerializeField] string[] tips;
@@ -17,7 +18,7 @@ public class GaiaTips : MonoBehaviour, IInteractable
 
     }
 
-    public void HasInteracted(out bool hasInteracted)
+    public void HasInteracted(Interactor interactor, out bool hasInteracted)
     {
         hasInteracted = false;
     }
@@ -36,23 +37,22 @@ public class GaiaTips : MonoBehaviour, IInteractable
 
     private void Update()
     {
-        GameObject playerTransform = GameObject.FindGameObjectWithTag("Player");
-
-        if(playerTransform != null)
+        if (playerTransform != null)
         {
-            if(Vector3.Distance(this.transform.position, playerTransform.transform.position) > 5)
+            if (Vector3.Distance(this.transform.position, playerTransform.transform.position) < 5)
+                dicasText.gameObject.SetActive(true);
+            else
             {
+                playerTransform = null;
                 dicasText.gameObject.SetActive(false);
             }
-        }
-        else
-        {
-            dicasText.gameObject.SetActive(false);
+
         }
     }
 
     public void SetRandomText()
     {
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         dicasText.gameObject.SetActive(true);
         dicasText.text = tips[Random.Range(0, tips.Length)];
     }

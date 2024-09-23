@@ -30,7 +30,7 @@ public class ItemPickup : MonoBehaviour
 
         if (inventory && inventory.InventorySystem.AddToInventory(itemData, 1))
         {
-            Camera.main.gameObject.GetComponent<AudioSource>().Play();
+            //Camera.main.gameObject.GetComponent<AudioSource>().Play();
             Destroy(gameObject);
         }
 

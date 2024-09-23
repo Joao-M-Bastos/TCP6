@@ -6,9 +6,12 @@ public class BossJumpAttack : BossAttacks
 {
     [SerializeField] float attackRange;
     [SerializeField] LayerMask playerMask;
+    [SerializeField] ParticleSystem buildUpParticules;
+
     public override void PlayAnimation()
     {
         bossAnimator.SetTrigger("JumpAttack");
+        buildUpParticules.Play();
     }
 
     public void CheckJumpCollision()
@@ -21,5 +24,10 @@ public class BossJumpAttack : BossAttacks
 
             player.TakeAHit(damageModifier + attackDamage);
         }
+    }
+
+    public override void FinishAttack()
+    {
+        buildUpParticules.Stop();
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -11,16 +12,18 @@ public class BossBehaviour : BaseEnemy
     [SerializeField] private float restingCooldown;
     [HideInInspector] public bool isAwoke = false;
     [SerializeField] AudioSource hurtSound;
+    
 
     public delegate void BossDeath();
     public static BossDeath bossDeath;
 
     private int combatLife;
+    private int decidedAttack;
 
-    [SerializeField] GameObject healthBarCanva;
     [SerializeField] Slider healthBarSlider;
 
     protected bool isAttacking;
+    
 
     private void Start()
     {
@@ -35,9 +38,11 @@ public class BossBehaviour : BaseEnemy
         life = enemyData.life + RecicleCounter.instance.RecicleCount;
         combatLife = life;
         damage = enemyData.damage + (int)(RecicleCounter.instance.RecicleCount / 2);
-        speed = 1 + (int)(RecicleCounter.instance.RecicleCount / 10);
-    }
+        speed = (enemyData.speed + (int)RecicleCounter.instance.RecicleCount) / 13;
 
+        UpdateHealthBar();
+    }
+    
     private void Update()
     {
         RemoveImmunityTime();
@@ -48,8 +53,8 @@ public class BossBehaviour : BaseEnemy
         StateController();
     }
 
-    public void AwakeBoss() { isAwoke = true; SetValues(); healthBarCanva.SetActive(true); }
-    public void GoToSleep() { isAwoke = false; healthBarCanva.SetActive(false); }
+    public void AwakeBoss() { isAwoke = true; SetValues();  }
+    public void GoToSleep() { isAwoke = false;  }
 
     public void StateController()
     {
@@ -87,7 +92,8 @@ public class BossBehaviour : BaseEnemy
     private void DecideAttack()
     {
         //Attack(0);
-        Attack(Random.Range(0, possibleAttacks.Length));
+        decidedAttack = Random.Range(0, possibleAttacks.Length);
+        Attack(decidedAttack);
     }
 
     public void Attack(int i)
@@ -105,6 +111,7 @@ public class BossBehaviour : BaseEnemy
     public void FinishAttack()
     {
         isAttacking = false;
+        possibleAttacks[decidedAttack].FinishAttack();
         ChageState(EnemyState.Resting);
     }
 
@@ -116,7 +123,7 @@ public class BossBehaviour : BaseEnemy
     public override void OnTakeDamage()
     {
         UpdateHealthBar();
-        hurtSound.Play();
+        //hurtSound.Play();
     }
 
     private void UpdateHealthBar()

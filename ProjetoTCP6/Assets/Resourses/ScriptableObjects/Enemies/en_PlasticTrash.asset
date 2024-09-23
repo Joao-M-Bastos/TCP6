@@ -21,5 +21,5 @@ MonoBehaviour:
   damage: 1
   speed: 5
   viewDistance: 8
-  attackDistance: 2
+  attackDistance: 1.5
   baseAttackCooldown: 0.4

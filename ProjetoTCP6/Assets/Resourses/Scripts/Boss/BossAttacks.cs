@@ -30,5 +30,11 @@ public abstract class BossAttacks : MonoBehaviour
         PlayAnimation();
     }
 
+    virtual public void FinishAttack()
+    {
+
+    }
+
     public abstract void PlayAnimation();
+
 }

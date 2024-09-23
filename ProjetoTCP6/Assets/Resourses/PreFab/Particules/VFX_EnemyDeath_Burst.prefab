@@ -4899,7 +4899,7 @@ GameObject:
   - component: {fileID: 816706902302085240}
   - component: {fileID: 1078913770781548322}
   m_Layer: 0
-  m_Name: EnemyDeathParticule
+  m_Name: VFX_EnemyDeath_Burst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

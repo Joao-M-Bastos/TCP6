@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6331535467126698554}
   - component: {fileID: 8319142680506176706}
   - component: {fileID: 592317232264022869}
+  - component: {fileID: 9040760655510760938}
   m_Layer: 0
   m_Name: Corpse_Glass
   m_TagString: Untagged
@@ -100,8 +101,22 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.71, z: 1.6}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.8606014, z: 1.6}
+  m_Center: {x: 0, y: 0.07530069, z: 0}
+--- !u!114 &9040760655510760938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2208981187951229936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc3efd72c18ca544b5cc5c7ca69cfa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemToDrop: {fileID: 11400000, guid: d59800e673f5b8d4f8f75276af9abfc7, type: 2}
+  dropChance: 100
 --- !u!1 &8128200027755365430
 GameObject:
   m_ObjectHideFlags: 0

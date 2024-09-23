@@ -6,11 +6,18 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] CanvasManager canvasManager;
     bool paused, gameEnded;
-    private void Awake()
+    public void OnDisable()
+    {
+        PlayerScpt.onPlayerDie -= PlayerDeath;
+        BossBehaviour.bossDeath -= BossDeath;
+    }
+
+    public void OnEnable()
     {
         PlayerScpt.onPlayerDie += PlayerDeath;
         BossBehaviour.bossDeath += BossDeath;
     }
+
     public void PlayerDeath()
     {
         gameEnded = true;
@@ -21,7 +28,7 @@ public class GameManager : MonoBehaviour
     public void BossDeath()
     {
         gameEnded = true;
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         canvasManager.ChangeCanvas(CanvasStates.Win);
     }
 

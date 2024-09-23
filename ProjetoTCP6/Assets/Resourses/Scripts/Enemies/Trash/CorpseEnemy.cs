@@ -50,6 +50,7 @@ public class CorpseEnemy : BaseEnemy
     public override void OnDie()
     {
         PlayParticuleOnDeath();
+        DropItemOnDeath();
     }
 
     public override void OnTakeDamage()
