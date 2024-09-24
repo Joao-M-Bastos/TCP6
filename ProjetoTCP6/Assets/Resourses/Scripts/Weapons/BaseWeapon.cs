@@ -8,7 +8,7 @@ public abstract class BaseWeapon : MonoBehaviour
     [SerializeField] WeaponData weaponData;
     [SerializeField] BoxCollider boxCollider;
 
-    int baseDamage;
+    protected int baseDamage;
     string animToTrigger;
 
     public bool isWeaponActive;
@@ -31,6 +31,7 @@ public abstract class BaseWeapon : MonoBehaviour
     public void DeactivateCollider()
     {
         boxCollider.enabled  =false;
+        SpecialEffect();
     }
 
     public void PlayWeaponAnimation(Animator handAnimator)

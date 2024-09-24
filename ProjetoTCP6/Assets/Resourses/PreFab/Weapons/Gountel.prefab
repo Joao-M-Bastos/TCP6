@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 856153875189659008}
   - component: {fileID: 3223974394295081595}
   - component: {fileID: 5505664849265335802}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Gountel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
