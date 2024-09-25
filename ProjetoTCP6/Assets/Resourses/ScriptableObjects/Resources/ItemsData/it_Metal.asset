@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 3
   displayName: Metal Trash
   description: Metal Trash
+  isBuff: 0
   itemsIcon: {fileID: 21300000, guid: 81a9cd3a255342747a2d1455dba8b054, type: 3}
   maxStackSize: 2
   itemPrefab: {fileID: 8576224414610405156, guid: 76a1a191dbbbd614bb1119c92bd37cac,

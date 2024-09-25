@@ -8,7 +8,7 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class Recicler : MonoBehaviour, IInteractable
 {
-    [SerializeField] int materialID, itemToGenerate;
+    [SerializeField] int materialID, itemToGenerate, itemToExtraGenerate;
     [SerializeField] int amountNeeded;
     [SerializeField] ItemDataBase itemDatabase;
     [SerializeField] GameObject spriteIcon;
@@ -67,12 +67,18 @@ public class Recicler : MonoBehaviour, IInteractable
     {
         RecicleCounter.instance.RemoveRecicleAmount();
         if (itemGenerated)
-            return;
+        {
+            Instantiate(itemDatabase.GetItem(itemToExtraGenerate).itemPrefab, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            SetText(0);
 
-        SetText(0);
+            itemGenerated = true;
+            Instantiate(itemDatabase.GetItem(itemToGenerate).itemPrefab, transform.position, Quaternion.identity);
+        }
 
-        itemGenerated = true;
-        Instantiate(itemDatabase.GetItem(itemToGenerate).itemPrefab, transform.position, Quaternion.identity);
+        
     }
 
     public void Interact(Interactor interactor, out bool interactionSuccess)

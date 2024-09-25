@@ -33,7 +33,7 @@ public abstract class InventoryDisplay : MonoBehaviour
         }
     }
 
-    public void SlotClicked(InventorySlot_UI clickedUISlot)
+    public virtual void SlotClicked(InventorySlot_UI clickedUISlot)
     {
         if (clickedUISlot.AssingInventorySlot.ItemData != null && mouseInventoryItem.AssingInventorySlot.ItemData == null)
         {

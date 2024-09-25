@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e6576f71fa2203459e4fe95237cfe67, type: 3}
-  m_Name: key_Metal
+  m_Name: bu_Paper
   m_EditorClassIdentifier: 
-  ID: 7
-  displayName: Metal Key
-  description: Opens Metal Door
-  isBuff: 0
-  itemsIcon: {fileID: 21300000, guid: cc4304a02d6602b469ee0d232718d78b, type: 3}
-  maxStackSize: 1
-  itemPrefab: {fileID: 8576224414610405156, guid: 460725d4fc1ef824eab8922386cc9208,
+  ID: 8
+  displayName: Total Life buff
+  description: Improve your life total
+  isBuff: 1
+  itemsIcon: {fileID: 21300000, guid: 7f6a61cc75ad24d4fa72884683da9a98, type: 3}
+  maxStackSize: 16
+  itemPrefab: {fileID: 2733493166156245927, guid: d762d25060cdf1f468b5bb6d67cb01d3,
     type: 3}

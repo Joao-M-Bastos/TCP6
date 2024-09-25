@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 1
   displayName: Plastic Trash
   description: Plastic
+  isBuff: 0
   itemsIcon: {fileID: 21300000, guid: 6a4586b98e6a65045bd8e921b8f12cf4, type: 3}
   maxStackSize: 4
   itemPrefab: {fileID: 2733493166156245927, guid: 9d42dc6dd104c784694bfc3920c17ca6,

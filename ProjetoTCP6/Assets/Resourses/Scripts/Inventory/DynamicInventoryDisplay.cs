@@ -15,7 +15,7 @@ public class DynamicInventoryDisplay : InventoryDisplay
     }
 
 
-    public void RefreshDynamicInventory(InventorySystem invToDisplay)
+    public virtual void RefreshDynamicInventory(InventorySystem invToDisplay)
     {
         ClearSlots();
         inventorySystem = invToDisplay;

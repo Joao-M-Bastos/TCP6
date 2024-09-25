@@ -12,6 +12,7 @@ public class RecicleCounter : MonoBehaviour
     public static RecicleCounter instance;
     [SerializeField] int startRecicleAmount = 10;
     int recicleAmount;
+    int paperAmount, plasticAmount, glassAmount, metalAmount;
 
     public int RecicleCount => recicleAmount;
 

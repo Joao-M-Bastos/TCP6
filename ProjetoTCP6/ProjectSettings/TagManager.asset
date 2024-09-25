@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Inventory
   - ThreadMill
+  - Bag
   layers:
   - Default
   - TransparentFX

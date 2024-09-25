@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 4
   displayName: Paper Key
   description: Opens Paper Door
+  isBuff: 0
   itemsIcon: {fileID: 21300000, guid: fbb421ca55f795e4bbb42993124d38be, type: 3}
   maxStackSize: 1
   itemPrefab: {fileID: 2733493166156245927, guid: 1a4b665606afaef4bb26005b72ca1cad,

@@ -67,6 +67,4 @@ public class RightHand : MonoBehaviour
     {
         currentWeapon.DeactivateCollider();
     }
-
-
 }
