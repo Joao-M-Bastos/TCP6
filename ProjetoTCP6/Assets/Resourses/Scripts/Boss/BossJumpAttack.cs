@@ -22,7 +22,8 @@ public class BossJumpAttack : BossAttacks
         {
             PlayerScpt player = hit[0].transform.gameObject.GetComponent<PlayerScpt>();
 
-            player.TakeAHit(damageModifier + attackDamage, this.transform.position);
+            player.TakeAHit(damageModifier + attackDamage);
+            player.TakeKnockBack(this.transform.position);
         }
     }
 

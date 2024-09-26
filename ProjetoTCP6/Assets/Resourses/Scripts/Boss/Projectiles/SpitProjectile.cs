@@ -21,8 +21,10 @@ public class SpitProjectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
-            other.GetComponent<PlayerScpt>().TakeAHit(bulletDamage, this.transform.position);
-
+        {
+            other.GetComponent<PlayerScpt>().TakeAHit(bulletDamage);
+            other.GetComponent<PlayerScpt>().TakeKnockBack(this.transform.position);
+        }
         Destroy(gameObject);
     }
 }

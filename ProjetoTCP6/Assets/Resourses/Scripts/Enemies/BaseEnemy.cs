@@ -90,7 +90,8 @@ public abstract class BaseEnemy : MonoBehaviour
         if (other.TryGetComponent(out PlayerScpt player))
         {
             attackAreaCollider.enabled = false;
-            player.TakeAHit(damage + addToDamage, this.transform.position);
+            player.TakeAHit(damage + addToDamage);
+            player.TakeKnockBack(this.transform.position);
         }
     }
 

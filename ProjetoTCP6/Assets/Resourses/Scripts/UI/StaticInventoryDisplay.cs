@@ -18,7 +18,7 @@ public class StaticInventoryDisplay : InventoryDisplay
     }
 
 
-    private void Start()
+    protected void Start()
     {
         RefreshInventory();
     }

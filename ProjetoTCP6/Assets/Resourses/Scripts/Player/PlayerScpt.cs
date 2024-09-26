@@ -18,13 +18,16 @@ public class PlayerScpt : MonoBehaviour
 
     #region Values
 
-    [SerializeField] int acelleration, maxSpeed;
+    [SerializeField] int acelleration;
+    [SerializeField] float maxSpeed;
+    float extraSpeed;
     [SerializeField] int baseLife, currentLife;
+    int shild;
     [SerializeField] float dashCooldown;
     float currentDash;
 
     public int Aceleration => acelleration;
-    public int MaxSpeed => maxSpeed;
+    public float MaxSpeed => maxSpeed + extraSpeed;
 
     public int CurrentLife => currentLife;
 
@@ -47,6 +50,22 @@ public class PlayerScpt : MonoBehaviour
 
     #endregion
 
+
+    #region Inicialize
+    private void OnEnable()
+    {
+        BagInventoryDisplay.usePaper += PaperUsed;
+        BagInventoryDisplay.usePlastic += PlasticUsed;
+        BagInventoryDisplay.useMetal += MetalUsed;
+    }
+
+    private void OnDisable()
+    {
+        BagInventoryDisplay.usePaper -= PaperUsed;
+        BagInventoryDisplay.usePlastic -= PlasticUsed;
+        BagInventoryDisplay.useMetal -= MetalUsed;
+    }
+
     private void Awake()
     {
         playerRB = GetComponent<Rigidbody>();
@@ -55,23 +74,32 @@ public class PlayerScpt : MonoBehaviour
         playerStateController = GetComponent<PlayerStateController>();
         currentLife = baseLife;
     }
+    #endregion
 
-    public void TakeAHit(int value, Vector3 direction)
+    #region BuffItems
+
+    public void PaperUsed()
     {
-        currentLife -= value;
-        playerTookeDamage?.Invoke();
-        onPlayerUpdateLife?.Invoke();
-        FlashRender();
-
-        playerStateController.ChangeState(playerStateController.walkState);
-
-        if (currentLife <= 0)
+        if (currentLife < baseLife)
         {
-            onPlayerDie?.Invoke();
-            Destroy(gameObject);
+            currentLife++;
+            onPlayerUpdateLife?.Invoke();
         }
     }
 
+    public void PlasticUsed()
+    {
+        extraSpeed += 0.5f;
+    }
+
+    public void MetalUsed()
+    {
+        shild += 1;
+    }
+    
+    #endregion
+
+    #region Weapon
     public void DeactivateWeapon()
     {
         rightHand.DeactivateWeapon();
@@ -87,6 +115,9 @@ public class PlayerScpt : MonoBehaviour
         rightHand.DeactivateWeaponCollider();
     }
 
+    #endregion
+
+    #region Movement
     public bool CanDash()
     {
         if (currentDash >= 0)
@@ -98,6 +129,41 @@ public class PlayerScpt : MonoBehaviour
     public void ResetDashTime()
     {
         currentDash = dashCooldown;
+    }
+
+    #endregion
+
+    #region Damage
+
+    public void TakeAHit(int value)
+    {
+        if (shild > 0)
+        {
+            shild -= value;
+            if (shild < 0)
+                shild = 0;
+        }
+        else
+            currentLife -= value;
+        
+        playerTookeDamage?.Invoke();
+        onPlayerUpdateLife?.Invoke();
+
+        FlashRender();
+
+        if (currentLife <= 0)
+        {
+            onPlayerDie?.Invoke();
+            Destroy(gameObject);
+        }
+    }
+
+    public void TakeKnockBack(Vector3 hitPosition)
+    {
+        Vector3 direction = (transform.position - hitPosition).normalized;
+        playerStateController.ChangeState(playerStateController.damageState);
+
+        playerRB.AddForce(direction * 10, ForceMode.VelocityChange);
     }
 
     protected void FlashRender()
@@ -117,4 +183,5 @@ public class PlayerScpt : MonoBehaviour
             r.material.color = Color.white;
         }
     }
+    #endregion
 }

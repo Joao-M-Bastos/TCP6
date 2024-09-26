@@ -7,14 +7,6 @@ using UnityEngine;
 public class DynamicInventoryDisplay : InventoryDisplay
 {
     [SerializeField] protected InventorySlot_UI slotPrefab;
-
-    protected override void Start()
-    {
-        base.Start();
-
-    }
-
-
     public virtual void RefreshDynamicInventory(InventorySystem invToDisplay)
     {
         ClearSlots();

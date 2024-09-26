@@ -36748,6 +36748,7 @@ MonoBehaviour:
   - {fileID: 86979069}
   - {fileID: 1038542181}
   - {fileID: 320723437}
+  paperUseCooldown: 20
 --- !u!114 &1929618442
 MonoBehaviour:
   m_ObjectHideFlags: 0
