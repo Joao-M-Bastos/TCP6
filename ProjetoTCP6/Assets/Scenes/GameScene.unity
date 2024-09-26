@@ -4337,6 +4337,11 @@ PrefabInstance:
       value: "Est\xE1 tentando cometer o mesmo erro que seus ancestrais? Cada material
         tem seu compartimento espec\xEDfico. Descarte-os de forma correta"
       objectReference: {fileID: 0}
+    - target: {fileID: 1239369262651102303, guid: f454ca9f6c2c87a44b3375091a5572e6,
+        type: 3}
+      propertyPath: itemToExtraGenerate
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1829537620392318475, guid: f454ca9f6c2c87a44b3375091a5572e6,
         type: 3}
       propertyPath: m_Name
@@ -6915,6 +6920,7 @@ GameObject:
   m_Component:
   - component: {fileID: 439612290}
   - component: {fileID: 439612289}
+  - component: {fileID: 439612291}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -6978,6 +6984,18 @@ Transform:
   - {fileID: 1606877637}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
+--- !u!114 &439612291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439612288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3916c6c5e4ed01c4786c45de090e01b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &464370694
 GameObject:
   m_ObjectHideFlags: 0
@@ -7366,6 +7384,11 @@ PrefabInstance:
       propertyPath: tips.Array.data[1]
       value: "Est\xE1 tentando cometer o mesmo erro que seus ancestrais? Cada material
         tem seu compartimento espec\xEDfico. Descarte-os de forma correta"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239369262651102303, guid: f454ca9f6c2c87a44b3375091a5572e6,
+        type: 3}
+      propertyPath: itemToExtraGenerate
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1829537620392318475, guid: f454ca9f6c2c87a44b3375091a5572e6,
         type: 3}
@@ -12746,6 +12769,11 @@ PrefabInstance:
       propertyPath: tips.Array.data[1]
       value: "Est\xE1 tentando cometer o mesmo erro que seus ancestrais? Cada material
         tem seu compartimento espec\xEDfico. Descarte-os de forma correta"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239369262651102303, guid: f454ca9f6c2c87a44b3375091a5572e6,
+        type: 3}
+      propertyPath: itemToExtraGenerate
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1829537620392318475, guid: f454ca9f6c2c87a44b3375091a5572e6,
         type: 3}
@@ -36477,6 +36505,7 @@ GameObject:
   - component: {fileID: 1918820083}
   - component: {fileID: 1918820082}
   - component: {fileID: 1918820081}
+  - component: {fileID: 1918820084}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -36560,6 +36589,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1918820084
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918820079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 1
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1929618433
 GameObject:
   m_ObjectHideFlags: 0

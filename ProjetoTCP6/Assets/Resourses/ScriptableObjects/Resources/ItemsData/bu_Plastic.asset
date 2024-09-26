@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e6576f71fa2203459e4fe95237cfe67, type: 3}
+  m_Name: bu_Plastic
+  m_EditorClassIdentifier: 
+  ID: 9
+  displayName: AttackSpeed buff
+  description: Improve attackSpeed
+  isBuff: 1
+  itemsIcon: {fileID: 21300000, guid: 77ad455903375c74d86b187732ff8973, type: 3}
+  maxStackSize: 16
+  itemPrefab: {fileID: 2733493166156245927, guid: a367cdcdb55069d4a8187d17ed11756a,
+    type: 3}

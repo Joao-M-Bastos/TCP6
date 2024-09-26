@@ -10,12 +10,14 @@ public class GameManager : MonoBehaviour
     {
         PlayerScpt.onPlayerDie -= PlayerDeath;
         BossBehaviour.bossDeath -= BossDeath;
+        PlayerScpt.playerTookeDamage -= ScreenPause;
     }
 
     public void OnEnable()
     {
         PlayerScpt.onPlayerDie += PlayerDeath;
         BossBehaviour.bossDeath += BossDeath;
+        PlayerScpt.playerTookeDamage += ScreenPause;
     }
 
     public void PlayerDeath()
@@ -52,6 +54,32 @@ public class GameManager : MonoBehaviour
                 paused = false;
                 Time.timeScale = 1;
             }
+    }
+
+    public void ScreenPause()
+    {
+
+        if (Time.timeScale != 0)
+        {
+            StartCoroutine(PauseScree(0.075f));
+        }
+
+    }
+
+    public void ScreenPause(float pauseTime)
+    {
         
+        if(Time.timeScale != 0)
+        {
+            StartCoroutine(PauseScree(pauseTime));
+        }
+
+    }
+
+    IEnumerator PauseScree(float pauseTime)
+    {
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(pauseTime);
+        Time.timeScale = 1;
     }
 }

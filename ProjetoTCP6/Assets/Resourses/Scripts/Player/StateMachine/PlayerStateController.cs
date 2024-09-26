@@ -7,7 +7,8 @@ public class PlayerStateController : MonoBehaviour
     PlayerScpt player;
     PlayerBaseState currentState;
 
-    Player_WalkState walkState = new Player_WalkState();
+    public PlayerBaseState walkState = new Player_WalkState();
+    public PlayerBaseState damageState = new Player_DamageState();
 
     private void Awake()
     {

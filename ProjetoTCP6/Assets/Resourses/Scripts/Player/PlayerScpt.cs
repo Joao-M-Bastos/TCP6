@@ -13,6 +13,8 @@ public class PlayerScpt : MonoBehaviour
     public delegate void OnPlayerUpdateLife();
     public static OnPlayerUpdateLife onPlayerUpdateLife;
 
+    public delegate void PlayerTookeDamage();
+    public static PlayerTookeDamage playerTookeDamage;
 
     #region Values
 
@@ -33,6 +35,7 @@ public class PlayerScpt : MonoBehaviour
     Rigidbody playerRB;
     RightHand rightHand;
     Animator animator;
+    PlayerStateController playerStateController;
     [SerializeField] MeshRenderer[] renderers;
     [SerializeField] public AudioSource walkingSound;
 
@@ -49,14 +52,19 @@ public class PlayerScpt : MonoBehaviour
         playerRB = GetComponent<Rigidbody>();
         rightHand = GetComponentInChildren<RightHand>();
         animator = GetComponent<Animator>();
+        playerStateController = GetComponent<PlayerStateController>();
         currentLife = baseLife;
     }
 
-    public void TakeAHit(int value)
+    public void TakeAHit(int value, Vector3 direction)
     {
         currentLife -= value;
+        playerTookeDamage?.Invoke();
         onPlayerUpdateLife?.Invoke();
         FlashRender();
+
+        playerStateController.ChangeState(playerStateController.walkState);
+
         if (currentLife <= 0)
         {
             onPlayerDie?.Invoke();
