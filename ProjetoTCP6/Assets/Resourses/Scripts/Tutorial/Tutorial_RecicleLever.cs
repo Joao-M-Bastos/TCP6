@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class RecicleLever : MonoBehaviour, IInteractable
+public class Tutorial_RecicleLever : MonoBehaviour, IInteractable
 {
-    [SerializeField] protected Recicler recicler;
+    [SerializeField] TextMeshProUGUI tutorialText;
+
+    [SerializeField] protected ReciclerTutorial recicler;
     protected Animator animator;
 
     public UnityAction<IInteractable> onInteractionComplete { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
@@ -26,6 +29,7 @@ public class RecicleLever : MonoBehaviour, IInteractable
         {
             animator.SetTrigger("Open");
             interactionSuccess = true;
+            tutorialText.enabled = false;
             recicler.ActivateRecicler();
         }
 

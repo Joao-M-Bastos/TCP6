@@ -1,0 +1,167 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class DialogueManager : MonoBehaviour
+{
+    [SerializeField] private float textSpeed;
+    [SerializeField] private TMP_Text characterNameText;
+    [SerializeField] private TMP_Text dialogueText;
+    [SerializeField] private Animator dialogueBoxAnimator;
+    [field: SerializeField] public List<DialogueEvent> DialogueEvents { get; private set; }
+
+    private Queue<Dialogue> dialoguesQueue;
+    private Queue<string> sentencesQueue;
+    private Dictionary<Characters, string> characterNamesDictionary;
+    private Image dialogueBoxImage;
+    private Coroutine sentenceCoroutine;
+    private string lastSentence;
+    public static DialogueManager Instance { get; private set; }
+
+    bool inDialog;
+
+    public delegate void DialogueEnded();
+    public static DialogueEnded dialogueEnded;
+    
+    private void Awake()
+    {
+        Instance = this;
+        dialogueBoxImage = dialogueBoxAnimator.GetComponent<Image>();
+    }
+    void Start()
+    {
+        dialoguesQueue = new Queue<Dialogue>();
+        sentencesQueue = new Queue<string>();
+        characterNamesDictionary = new Dictionary<Characters, string>()
+        {
+            { Characters.Gaia, "Gaia"},
+        };
+
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            //StartDialogue(DialogueEvents[0].Dialogues);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            TryDisplayNextSentence();
+        }
+    }
+
+    public void StartDialogue(List<Dialogue> dialogues)
+    {
+        dialoguesQueue.Clear();
+        sentencesQueue.Clear();
+
+        foreach (Dialogue dialogue in dialogues)
+        {
+            dialoguesQueue.Enqueue(dialogue);
+        }
+
+        inDialog = true;
+
+        
+
+        TryDisplayNextDialogue();
+    }
+     
+    public void DisplayNextDialogue()
+    {
+        bool hasDialog = dialoguesQueue.TryPeek(out Dialogue nextDialogue);
+        if (!hasDialog) return;
+
+        foreach (string sentence in nextDialogue.Sentences) 
+        {
+            sentencesQueue.Enqueue(sentence);
+        }
+
+        SetDialogueConfig(nextDialogue);
+
+        characterNameText.text = characterNamesDictionary[nextDialogue.CharacterType];
+
+        dialoguesQueue.Dequeue();
+        TryDisplayNextSentence();
+    }
+
+    private void SetDialogueConfig(Dialogue dialogue)
+    {
+        dialogueBoxImage.sprite = dialogue.BackgroundImage;
+        dialogueText.font = dialogue.Font;
+        dialogueText.fontStyle = dialogue.FontStyle;
+        dialogueText.color = dialogue.FontColor;
+        dialogueBoxImage.sprite = dialogue.BackgroundImage;
+
+        dialogueBoxAnimator.SetBool("IsOpen", true);
+    }
+
+    public void TryDisplayNextSentence()
+    {
+        if (!inDialog)
+            return;
+
+        if (sentencesQueue.Count == 0 && sentenceCoroutine == null)
+        {
+            TryDisplayNextDialogue();
+            return;
+        }
+
+        if (sentenceCoroutine != null)
+        {
+            StopAllCoroutines();
+            dialogueText.text = lastSentence;
+            sentenceCoroutine = null;
+            return;
+        }
+
+        string sentence = sentencesQueue.Dequeue();
+        lastSentence = sentence;
+        DisplayNextSentence(sentence);
+    }
+    public void DisplayNextSentence(string sentence)
+    {
+        StopAllCoroutines();
+        sentenceCoroutine = StartCoroutine(TypeSentence(sentence));
+    }
+
+    public void TryDisplayNextDialogue()
+    {
+        if (dialoguesQueue.Count != 0)
+        {
+            DisplayNextDialogue();
+        }
+
+        else EndDialogue();
+    }
+
+    private IEnumerator TypeSentence(string sentence)
+    {
+        dialogueText.text = "";
+
+        foreach (char letter in  sentence.ToCharArray())
+        {
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(textSpeed);
+        }
+
+        sentenceCoroutine = null;
+    }
+
+    public void EndDialogue()
+    {
+        dialogueEnded?.Invoke();
+        dialogueBoxAnimator.SetBool("IsOpen", false);
+        inDialog = false;
+    }
+}
+
+public enum Characters
+{
+    Gaia
+}

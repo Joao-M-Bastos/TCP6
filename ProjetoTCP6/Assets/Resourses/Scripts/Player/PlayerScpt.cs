@@ -52,6 +52,7 @@ public class PlayerScpt : MonoBehaviour
 
 
     #region Inicialize
+
     private void OnEnable()
     {
         BagInventoryDisplay.usePaper += PaperUsed;

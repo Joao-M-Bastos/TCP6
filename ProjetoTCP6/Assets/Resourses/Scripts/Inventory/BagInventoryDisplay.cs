@@ -20,7 +20,6 @@ public class BagInventoryDisplay : StaticInventoryDisplay
     public delegate void UseMetal();
     public static UseMetal useMetal;
 
-    InventoryHolder bag;
     [SerializeField] float paperUseCooldown;
     float paperCurrentCooldown;
 
@@ -33,7 +32,6 @@ public class BagInventoryDisplay : StaticInventoryDisplay
 
     private void Awake()
     {
-        bag = GetComponent<InventoryHolder>();
         playerControls = new PlayerControl();
     }
 
@@ -117,12 +115,12 @@ public class BagInventoryDisplay : StaticInventoryDisplay
 
         if (itemData == null || !itemData.isBuff) return false;
 
-        bag.InventorySystem.ContainItem(itemData, out List<InventorySlot> invSlots);
+        inventoryHolder.InventorySystem.ContainItem(itemData, out List<InventorySlot> invSlots);
         
         if (invSlots.Count > 0)
         {
             invSlots[0].RemoveToStack(1);
-            bag.InventorySystem.OnSlotChanged(invSlots[0]);
+            inventoryHolder.InventorySystem.OnSlotChanged(invSlots[0]);
             return true;
         }
 

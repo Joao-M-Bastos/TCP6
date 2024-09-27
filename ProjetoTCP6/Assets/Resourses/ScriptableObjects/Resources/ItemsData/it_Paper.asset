@@ -17,6 +17,6 @@ MonoBehaviour:
   description: Paper
   isBuff: 0
   itemsIcon: {fileID: 21300000, guid: 4514097e42ff4d344a041d467351850f, type: 3}
-  maxStackSize: 3
+  maxStackSize: 16
   itemPrefab: {fileID: 2733493166156245927, guid: 7a54d888d4ec2114ba206094be619604,
     type: 3}

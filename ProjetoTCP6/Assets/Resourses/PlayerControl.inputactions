@@ -51,6 +51,42 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Hotbar6",
+                    "type": "PassThrough",
+                    "id": "4a8e0fb3-15cd-461e-a248-ca0b28cfad9c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Hotbar7",
+                    "type": "Value",
+                    "id": "3e82891c-97ee-4b6a-a5c4-6e253b4df95c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Hotbar8",
+                    "type": "Button",
+                    "id": "32547594-fb32-42b3-ae0b-f0dee885e03c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Hotbar9",
+                    "type": "Value",
+                    "id": "74e925ce-6326-4721-a6fb-15000897a5cd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "MouseWheel",
                     "type": "PassThrough",
                     "id": "0412c7d6-2664-4008-b9c6-d7cec81f05d0",
@@ -144,6 +180,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "UseItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9c02573b-99de-4894-9c38-fae7b1f3b009",
+                    "path": "<Keyboard>/6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hotbar6",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0ef9d84f-0de6-44cb-833d-40cd5e1c2c69",
+                    "path": "<Keyboard>/7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hotbar7",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "967ab31f-6afc-4cff-84ca-549a8025f341",
+                    "path": "<Keyboard>/8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hotbar8",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8f55440b-a30e-4c58-bb7b-ec485ad38a5b",
+                    "path": "<Keyboard>/9",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hotbar9",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
