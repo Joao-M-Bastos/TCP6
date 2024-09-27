@@ -9,6 +9,7 @@ public class DialogueManager : MonoBehaviour
 {
     [SerializeField] private float textSpeed;
     [SerializeField] private TMP_Text characterNameText;
+    [SerializeField] private SpriteRenderer characterSpriteRenderer;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private Animator dialogueBoxAnimator;
     [field: SerializeField] public List<DialogueEvent> DialogueEvents { get; private set; }
@@ -16,6 +17,8 @@ public class DialogueManager : MonoBehaviour
     private Queue<Dialogue> dialoguesQueue;
     private Queue<string> sentencesQueue;
     private Dictionary<Characters, string> characterNamesDictionary;
+    [SerializeField] private Sprite[] characterSprites;
+    private Dictionary<Characters, Sprite> characterSpritesDictionary;
     private Image dialogueBoxImage;
     private Coroutine sentenceCoroutine;
     private string lastSentence;
@@ -23,9 +26,12 @@ public class DialogueManager : MonoBehaviour
 
     bool inDialog;
 
-    public delegate void DialogueEnded();
-    public static DialogueEnded dialogueEnded;
-    
+    public delegate void DialogueEnd();
+    public static DialogueEnd dialogueEnd;
+
+    public delegate void DialogueStart();
+    public static DialogueStart dialogueStart;
+
     private void Awake()
     {
         Instance = this;
@@ -38,6 +44,11 @@ public class DialogueManager : MonoBehaviour
         characterNamesDictionary = new Dictionary<Characters, string>()
         {
             { Characters.Gaia, "Gaia"},
+        };
+
+        characterSpritesDictionary = new Dictionary<Characters, Sprite>()
+        {
+            { Characters.Gaia, characterSprites[0]},
         };
 
     }
@@ -67,7 +78,8 @@ public class DialogueManager : MonoBehaviour
 
         inDialog = true;
 
-        
+        dialogueStart?.Invoke();
+
 
         TryDisplayNextDialogue();
     }
@@ -85,6 +97,7 @@ public class DialogueManager : MonoBehaviour
         SetDialogueConfig(nextDialogue);
 
         characterNameText.text = characterNamesDictionary[nextDialogue.CharacterType];
+        characterSpriteRenderer.sprite = characterSpritesDictionary[nextDialogue.CharacterType];
 
         dialoguesQueue.Dequeue();
         TryDisplayNextSentence();
@@ -155,7 +168,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
-        dialogueEnded?.Invoke();
+        dialogueEnd?.Invoke();
         dialogueBoxAnimator.SetBool("IsOpen", false);
         inDialog = false;
     }

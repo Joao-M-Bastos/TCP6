@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.ProBuilder.Shapes;
 
 public class ReciclerTutorial : MonoBehaviour, IInteractable
 {
@@ -11,7 +12,8 @@ public class ReciclerTutorial : MonoBehaviour, IInteractable
     [SerializeField] int amountNeeded;
     [SerializeField] ItemDataBase itemDatabase;
     [SerializeField] GameObject spriteIcon;
-    [SerializeField] TextMeshProUGUI tutorialText, tutorialText2, tutorialText3;
+    [SerializeField] TextMeshProUGUI tutorialText, tutorialText2;
+    [SerializeField] TutorialDoor door;
     bool isActive;
     bool itemGenerated;
     int currentAmount;
@@ -64,13 +66,14 @@ public class ReciclerTutorial : MonoBehaviour, IInteractable
         if (itemGenerated)
         {
             tutorialText2.gameObject.SetActive(false);
-            tutorialText3.gameObject.SetActive(true);
+            door.OpenDoor();
             Instantiate(itemDatabase.GetItem(itemToExtraGenerate).itemPrefab, transform.position, Quaternion.identity);
         }
         else
         {
             tutorialText.gameObject.SetActive(false);
             tutorialText2.gameObject.SetActive(true);
+            
 
             itemGenerated = true;
             Instantiate(itemDatabase.GetItem(itemToGenerate).itemPrefab, transform.position, Quaternion.identity);
