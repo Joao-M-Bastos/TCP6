@@ -15,6 +15,7 @@ public class Interactor : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log((int)2.6f);
         Collider[] colliders = Physics.OverlapSphere(interacionPoint.position, interactionPointRatios, interacionLayer);
 
         bool activatePressE = false;

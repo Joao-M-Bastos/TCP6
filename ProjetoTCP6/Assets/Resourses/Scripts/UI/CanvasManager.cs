@@ -57,7 +57,7 @@ public class CanvasManager : MonoBehaviour
         currentState = state;
 
 
-        InGameCanvas.SetActive(currentState == CanvasStates.InGame);
+        InGameCanvas.SetActive(currentState == CanvasStates.InGame || currentState == CanvasStates.Dialogue);
 
         PausedCanvas.SetActive(currentState == CanvasStates.Paused);
 

@@ -7,6 +7,8 @@ public class PlayerStateController : MonoBehaviour
     PlayerScpt player;
     PlayerBaseState currentState;
 
+    public PlayerBaseState CurrentState => currentState;
+
     public PlayerBaseState walkState = new Player_WalkState();
     public PlayerBaseState damageState = new Player_DamageState();
 

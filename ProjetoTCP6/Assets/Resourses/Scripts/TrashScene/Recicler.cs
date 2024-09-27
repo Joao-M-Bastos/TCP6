@@ -12,6 +12,7 @@ public class Recicler : MonoBehaviour, IInteractable
     [SerializeField] int amountNeeded;
     [SerializeField] ItemDataBase itemDatabase;
     [SerializeField] GameObject spriteIcon;
+    [SerializeField] DialogueTrigger goodDialogue, badDialogue;
     bool isActive;
     bool itemGenerated;
     int currentAmount;
@@ -40,7 +41,7 @@ public class Recicler : MonoBehaviour, IInteractable
         }
         else
         {
-            SetText(1);
+            badDialogue.TriggerDialogueEvent();
             RecicleCounter.instance.AddRecicleAmount();
             currentAmount = 0;
         }
@@ -72,7 +73,7 @@ public class Recicler : MonoBehaviour, IInteractable
         }
         else
         {
-            SetText(0);
+            goodDialogue.TriggerDialogueEvent();
 
             itemGenerated = true;
             Instantiate(itemDatabase.GetItem(itemToGenerate).itemPrefab, transform.position, Quaternion.identity);

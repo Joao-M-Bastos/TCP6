@@ -35,10 +35,10 @@ public class BossBehaviour : BaseEnemy
 
     private void SetValues()
     {
-        life = enemyData.life + RecicleCounter.instance.RecicleCount;
+        life = enemyData.life;
         combatLife = life;
-        damage = enemyData.damage + (int)(RecicleCounter.instance.RecicleCount / 2);
-        speed = (enemyData.speed + (int)RecicleCounter.instance.RecicleCount) / 13;
+        damage = enemyData.damage;
+        speed = enemyData.speed;
 
         UpdateHealthBar();
     }

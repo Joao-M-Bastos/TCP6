@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class TutorialDoor : MonoBehaviour
+public class TutorialDoor : MonoBehaviour, IWaitForDialogue
 {
     Animator animator;
 
@@ -34,7 +34,7 @@ public class TutorialDoor : MonoBehaviour
         DialogueManager.dialogueEnd -= DialogueEnded;
     }
 
-    internal void WaitForDialogue()
+    public void WaitForDialogue()
     {
         DialogueManager.dialogueEnd += DialogueEnded;
     }

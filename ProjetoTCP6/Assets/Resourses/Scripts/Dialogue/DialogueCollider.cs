@@ -5,14 +5,15 @@ using UnityEngine;
 public class DialogueCollider : MonoBehaviour
 {
 
-    [SerializeField] TutorialDoor door;
+    [SerializeField] GameObject wait;
     bool hasCollided;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !hasCollided){
             GetComponent<DialogueTrigger>().TriggerDialogueEvent();
             hasCollided = true;
-            door.WaitForDialogue();
+            if(wait.TryGetComponent(out IWaitForDialogue waitScript))
+                waitScript.WaitForDialogue();
         }
     }
 }
