@@ -7,12 +7,13 @@ public class PauseManager : MonoBehaviour
 {
     public void SairDoJogo()
     {
-        Application.Quit();
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(0);
     }
 
     public void ReiniciarJogo()
     {
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }

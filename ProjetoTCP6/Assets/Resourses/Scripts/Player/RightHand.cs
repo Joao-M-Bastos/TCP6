@@ -27,6 +27,7 @@ public class RightHand : MonoBehaviour
     void Awake()
     {
         SetSword(0);
+        extraDamage = 0;
     }
 
     public void GlassUsed()

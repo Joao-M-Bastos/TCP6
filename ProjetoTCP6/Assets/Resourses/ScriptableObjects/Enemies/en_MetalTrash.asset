@@ -17,7 +17,7 @@ MonoBehaviour:
   description: A pile of paper left on the floor can couse a lot of problems
   enemyPrefab: {fileID: 4280076498758615629, guid: 9d72463c9aeead34c8af68016257d8e9,
     type: 3}
-  life: 5
+  life: 6
   damage: 2
   speed: 3
   viewDistance: 10

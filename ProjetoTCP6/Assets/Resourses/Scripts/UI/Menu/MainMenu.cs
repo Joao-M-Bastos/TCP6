@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+
+    public void Sair()
+    {
+        Application.Quit();
+    }
+
     public void StartInTutorial()
     {
         IsTutorial.isTutorial = true;
