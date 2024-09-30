@@ -5,6 +5,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] CanvasManager canvasManager;
+    [SerializeField] BossBehaviour bossBehaviour;
+    [SerializeField] PlayerScpt player;
+
+    [SerializeField] Vector3 initialPos, tutorialPos;
+
     bool paused, gameEnded;
     public void OnDisable()
     {
@@ -18,9 +23,17 @@ public class GameManager : MonoBehaviour
         BossBehaviour.bossDeath += BossDeath;
     }
 
+    private void Awake()
+    {
+        if(IsTutorial.isTutorial)
+            player.transform.position = tutorialPos;
+        else
+            player.transform.position = initialPos;
+    }
+
     public void PlayerDeath()
     {
-        gameEnded = true;
+        bossBehaviour.GoToSleep();
         canvasManager.ChangeCanvas(CanvasStates.GameOver);
     }
 
@@ -52,30 +65,30 @@ public class GameManager : MonoBehaviour
             }
     }
 
-    public void ScreenPause()
+    public void ScreenFreeze()
     {
 
         if (Time.timeScale != 0)
         {
-            StartCoroutine(PauseScree(0.03f));
+            StartCoroutine(FreezeScreen(0.03f));
         }
 
     }
 
-    public void ScreenPause(float pauseTime)
+    public void ScreenFreeze(float freezeTime)
     {
         
         if(Time.timeScale != 0)
         {
-            StartCoroutine(PauseScree(pauseTime));
+            StartCoroutine(FreezeScreen(freezeTime));
         }
 
     }
 
-    IEnumerator PauseScree(float pauseTime)
+    IEnumerator FreezeScreen(float freezeTime)
     {
         Time.timeScale = 0;
-        yield return new WaitForSecondsRealtime(pauseTime);
+        yield return new WaitForSecondsRealtime(freezeTime);
         Time.timeScale = 1;
     }
 }

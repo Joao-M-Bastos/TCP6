@@ -7,6 +7,8 @@ using static PlayerScpt;
 
 public class PlayerScpt : MonoBehaviour
 {
+
+    #region Delegates
     public delegate void OnPlayerDeath();
     public static OnPlayerDeath onPlayerDie;
 
@@ -15,6 +17,7 @@ public class PlayerScpt : MonoBehaviour
 
     public delegate void PlayerTookeDamage();
     public static PlayerTookeDamage playerTookeDamage;
+    #endregion
 
     #region Values
 
@@ -73,7 +76,20 @@ public class PlayerScpt : MonoBehaviour
         rightHand = GetComponentInChildren<RightHand>();
         animator = GetComponent<Animator>();
         playerStateController = GetComponent<PlayerStateController>();
+        ResetValues();
+    }
+
+    public void ResetValues()
+    {
+        InicializePlayer();
+        extraSpeed = 0;
+        shild = 0;
+    }
+
+    public void InicializePlayer()
+    {
         currentLife = baseLife;
+        onPlayerUpdateLife?.Invoke();
     }
     #endregion
 
@@ -138,6 +154,9 @@ public class PlayerScpt : MonoBehaviour
 
     public void TakeAHit(int value)
     {
+        if (currentLife <= 0)
+            return;
+
         if (shild > 0)
         {
             shild -= value;
@@ -155,7 +174,7 @@ public class PlayerScpt : MonoBehaviour
         if (currentLife <= 0)
         {
             onPlayerDie?.Invoke();
-            Destroy(gameObject);
+            Invoke("InicializePlayer",2f);
         }
     }
 

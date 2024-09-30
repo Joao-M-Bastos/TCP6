@@ -9,6 +9,7 @@ public abstract class BaseWeapon : MonoBehaviour
     [SerializeField] BoxCollider boxCollider;
 
     protected int baseDamage;
+    float extraDamage;
     string animToTrigger;
 
     public bool isWeaponActive;
@@ -17,6 +18,11 @@ public abstract class BaseWeapon : MonoBehaviour
     {
         baseDamage = weaponData.damage;
         animToTrigger = weaponData.animToTrigger;
+    }
+
+    public void SetExtraDamage(float value)
+    {
+        extraDamage = value;
     }
 
     public abstract void ActivateWeapon(Animator handAnimator);
@@ -30,7 +36,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
     public void DeactivateCollider()
     {
-        boxCollider.enabled  =false;
+        boxCollider.enabled = false;
         SpecialEffect();
     }
 
@@ -44,7 +50,7 @@ public abstract class BaseWeapon : MonoBehaviour
         if (other.TryGetComponent(out BaseEnemy enemy))
         {
             HitOtherCallback();
-            enemy.TakeHit(baseDamage);
+            enemy.TakeHit(baseDamage + Mathf.FloorToInt(extraDamage));
         }
     }
 

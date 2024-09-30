@@ -8,12 +8,30 @@ public class RightHand : MonoBehaviour
     BaseWeapon currentWeapon;
     [SerializeField] WeaponDataBase weaponDataBase;
 
+    float extraDamage;
+
     GameObject currentWeaponObj;
+
+
+    private void OnEnable()
+    {
+        BagInventoryDisplay.useGlass += GlassUsed;
+    }
+
+    private void OnDisable()
+    {
+        BagInventoryDisplay.useGlass -= GlassUsed;
+    }
 
     // Start is called before the first frame update
     void Awake()
     {
         SetSword(0);
+    }
+
+    public void GlassUsed()
+    {
+        extraDamage += 0.5f;
     }
 
     public void SetSword(int id)
@@ -51,6 +69,7 @@ public class RightHand : MonoBehaviour
     public void ActivateWeapon(Animator playerAnim)
     {
         currentWeapon.ActivateWeapon(playerAnim);
+        currentWeapon.SetExtraDamage(extraDamage);
     }
 
     public void DeactivateWeapon()
