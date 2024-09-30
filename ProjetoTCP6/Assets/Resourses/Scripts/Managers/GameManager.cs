@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
     public void PlayerDeath()
     {
         bossBehaviour.GoToSleep();
-        canvasManager.ChangeCanvas(CanvasStates.GameOver);
     }
 
     public void BossDeath()

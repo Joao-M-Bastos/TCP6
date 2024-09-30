@@ -34,6 +34,8 @@ public class PlayerScpt : MonoBehaviour
 
     public int CurrentLife => currentLife;
 
+    public int CurrentShild => shild;
+
     #endregion
 
     #region Instaces
@@ -89,6 +91,9 @@ public class PlayerScpt : MonoBehaviour
     public void InicializePlayer()
     {
         currentLife = baseLife;
+        animator.SetBool("Dead", false);
+        animator.ResetTrigger("GountletAttack");
+        animator.ResetTrigger("SpearAttack");
         onPlayerUpdateLife?.Invoke();
     }
     #endregion
@@ -112,6 +117,7 @@ public class PlayerScpt : MonoBehaviour
     public void MetalUsed()
     {
         shild += 1;
+        onPlayerUpdateLife?.Invoke();
     }
     
     #endregion
@@ -174,6 +180,8 @@ public class PlayerScpt : MonoBehaviour
         if (currentLife <= 0)
         {
             onPlayerDie?.Invoke();
+            playerStateController.ChangeState(playerStateController.damageState);
+            animator.SetBool("Dead", true);
             Invoke("InicializePlayer",2f);
         }
     }
@@ -181,7 +189,6 @@ public class PlayerScpt : MonoBehaviour
     public void TakeKnockBack(Vector3 hitPosition)
     {
         Vector3 direction = (transform.position - hitPosition).normalized;
-        playerStateController.ChangeState(playerStateController.damageState);
 
         playerRB.AddForce(direction * 10, ForceMode.VelocityChange);
     }

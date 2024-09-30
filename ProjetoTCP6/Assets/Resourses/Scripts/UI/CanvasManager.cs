@@ -6,14 +6,13 @@ using UnityEngine.SceneManagement;
 public enum CanvasStates{
     InGame,
     Paused,
-    GameOver,
     Dialogue,
     Win
 }
 
 public class CanvasManager : MonoBehaviour
 {
-    [SerializeField] GameObject InGameCanvas, PausedCanvas, GameOverCanva, WinCanvas, DialogueCanvas;
+    [SerializeField] GameObject InGameCanvas, PausedCanvas, WinCanvas, DialogueCanvas;
     [SerializeField] GameObject InventoryCanva;
 
     CanvasStates currentState;
@@ -57,11 +56,9 @@ public class CanvasManager : MonoBehaviour
         currentState = state;
 
 
-        InGameCanvas.SetActive(currentState == CanvasStates.InGame || currentState == CanvasStates.Dialogue);
+        InGameCanvas.SetActive(currentState == CanvasStates.InGame);
 
         PausedCanvas.SetActive(currentState == CanvasStates.Paused);
-
-        GameOverCanva.SetActive(currentState == CanvasStates.GameOver);
 
         WinCanvas.SetActive(currentState == CanvasStates.Win);
 

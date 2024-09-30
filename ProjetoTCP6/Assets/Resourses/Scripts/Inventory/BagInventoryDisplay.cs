@@ -116,6 +116,9 @@ public class BagInventoryDisplay : StaticInventoryDisplay
         if (itemData == null || !itemData.isBuff) return false;
 
         inventoryHolder.InventorySystem.ContainItem(itemData, out List<InventorySlot> invSlots);
+
+        if (itemData.ID == 8 && paperCurrentCooldown > 0)
+            return false;
         
         if (invSlots.Count > 0)
         {
@@ -129,7 +132,6 @@ public class BagInventoryDisplay : StaticInventoryDisplay
 
     private void UseItem(InventoryItemData itemData)
     {
-        Debug.Log(itemData.ID);
         switch (itemData.ID)
         {
             case 8:

@@ -18,7 +18,7 @@ public class Player_DamageState : PlayerBaseState
 
     public void StartState(PlayerScpt player, PlayerStateController stateController)
     {
-        recoverTime = 0.1f;
+        recoverTime = 2f;
     }
 
     public void UpdateState(PlayerScpt player, PlayerStateController stateController)
