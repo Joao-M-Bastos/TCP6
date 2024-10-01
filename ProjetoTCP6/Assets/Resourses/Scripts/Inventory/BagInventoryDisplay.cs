@@ -1,8 +1,10 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.PostProcessing;
 
@@ -22,6 +24,8 @@ public class BagInventoryDisplay : StaticInventoryDisplay
 
     [SerializeField] float paperUseCooldown;
     float paperCurrentCooldown;
+
+    int currentPaperSlot;
 
     public override void SlotClicked(InventorySlot_UI clickedUISlot)
     {
@@ -66,7 +70,7 @@ public class BagInventoryDisplay : StaticInventoryDisplay
     {
         InventoryItemData itemData = slots[0].AssingInventorySlot.ItemData;
 
-        if (!ConsumeItem(itemData))
+        if (!ConsumeItem(itemData,0))
             return;
 
         UseItem(itemData);
@@ -75,17 +79,19 @@ public class BagInventoryDisplay : StaticInventoryDisplay
     {
         InventoryItemData itemData = slots[1].AssingInventorySlot.ItemData;
 
-        if (!ConsumeItem(itemData))
+        if (!ConsumeItem(itemData,1))
             return;
 
         UseItem(itemData);
     }
 
+    
+
     private void UseItem3(InputAction.CallbackContext context)
     {
         InventoryItemData itemData = slots[2].AssingInventorySlot.ItemData;
 
-        if (!ConsumeItem(itemData))
+        if (!ConsumeItem(itemData,2))
             return;
 
         UseItem(itemData);
@@ -94,7 +100,7 @@ public class BagInventoryDisplay : StaticInventoryDisplay
     {
         InventoryItemData itemData = slots[3].AssingInventorySlot.ItemData;
 
-        if (!ConsumeItem(itemData))
+        if (!ConsumeItem(itemData,3))
             return;
 
         UseItem(itemData);
@@ -104,13 +110,13 @@ public class BagInventoryDisplay : StaticInventoryDisplay
     {
         InventoryItemData itemData = slots[4].AssingInventorySlot.ItemData;
 
-        if (!ConsumeItem(itemData))
+        if (!ConsumeItem(itemData,4))
             return;
 
         UseItem(itemData);
     }
 
-    public bool ConsumeItem(InventoryItemData itemData)
+    public bool ConsumeItem(InventoryItemData itemData, int slotID)
     {
 
         if (itemData == null || !itemData.isBuff) return false;
@@ -118,8 +124,11 @@ public class BagInventoryDisplay : StaticInventoryDisplay
         inventoryHolder.InventorySystem.ContainItem(itemData, out List<InventorySlot> invSlots);
 
         if (itemData.ID == 8 && paperCurrentCooldown > 0)
+        {
+            slots[slotID].gameObject.GetComponentInChildren<UnityEngine.UI.Image>().color = Color.red;
             return false;
-        
+        }
+
         if (invSlots.Count > 0)
         {
             invSlots[0].RemoveToStack(1);
@@ -157,6 +166,9 @@ public class BagInventoryDisplay : StaticInventoryDisplay
     {
         if (paperCurrentCooldown > 0)
             paperCurrentCooldown -= Time.deltaTime;
+        else
+            slots[currentPaperSlot].gameObject.GetComponentInChildren<UnityEngine.UI.Image>().color = new Color(0.4113207f, 0.299347f, 0.2413598f);
+
     }
 
 }
