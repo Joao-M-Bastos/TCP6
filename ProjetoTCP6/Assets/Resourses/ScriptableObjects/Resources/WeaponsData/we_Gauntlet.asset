@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c647de4486403064385421160ef73d63, type: 3}
   m_Name: we_Gauntlet
   m_EditorClassIdentifier: 
-  ID: 0
+  ID: 1
   weaponName: Gauntlet
-  damage: 1
+  damage: 2
   animToTrigger: GountletAttack
   weaponPrefab: {fileID: 3338447272768184362, guid: 69f4fe151d4ed144988906cb0f89a385,
     type: 3}
