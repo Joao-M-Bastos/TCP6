@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
     [SerializeField] private float textSpeed;
-    [SerializeField] private TMP_Text characterNameText;
+    [SerializeField] private Text characterNameText;
     [SerializeField] private SpriteRenderer characterSpriteRenderer;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private Animator dialogueBoxAnimator;

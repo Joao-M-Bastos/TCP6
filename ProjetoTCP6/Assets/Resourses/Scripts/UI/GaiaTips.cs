@@ -6,13 +6,19 @@ using UnityEngine.Events;
 
 public class GaiaTips : MonoBehaviour, IInteractable
 {
+
     Transform playerTransform;
+
+    DialogueTrigger dialogueTrigger;
     [SerializeField] TextMeshProUGUI dicasText;
 
     [SerializeField] string[] tips;
 
     public UnityAction<IInteractable> onInteractionComplete { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-
+    private void Awake()
+    {
+        dialogueTrigger = GetComponent<DialogueTrigger>();
+    }
     public void EndInteraction()
     {
 
@@ -25,7 +31,8 @@ public class GaiaTips : MonoBehaviour, IInteractable
 
     public void Interact(Interactor interactor, out bool interactionSuccess)
     {
-        SetRandomText();
+        //SetRandomText();
+        dialogueTrigger.TriggerDialogueEvent();
         interactionSuccess = true;
     }
 
@@ -33,21 +40,6 @@ public class GaiaTips : MonoBehaviour, IInteractable
     void Start()
     {
         dicasText.gameObject.SetActive(false);
-    }
-
-    private void Update()
-    {
-        if (playerTransform != null)
-        {
-            if (Vector3.Distance(this.transform.position, playerTransform.transform.position) < 5)
-                dicasText.gameObject.SetActive(true);
-            else
-            {
-                playerTransform = null;
-                dicasText.gameObject.SetActive(false);
-            }
-
-        }
     }
 
     public void SetRandomText()

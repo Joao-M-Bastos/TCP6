@@ -41,7 +41,7 @@ public class Recicler : MonoBehaviour, IInteractable
         }
         else
         {
-            badDialogue.TriggerDialogueEvent();
+            //badDialogue.TriggerDialogueEvent();
             RecicleCounter.instance.AddRecicleAmount();
             currentAmount = 0;
         }
@@ -73,7 +73,7 @@ public class Recicler : MonoBehaviour, IInteractable
         }
         else
         {
-            goodDialogue.TriggerDialogueEvent();
+            //goodDialogue.TriggerDialogueEvent();
 
             itemGenerated = true;
             Instantiate(itemDatabase.GetItem(itemToGenerate).itemPrefab, transform.position, Quaternion.identity);
