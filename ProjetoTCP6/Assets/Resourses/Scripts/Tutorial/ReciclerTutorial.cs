@@ -12,8 +12,8 @@ public class ReciclerTutorial : MonoBehaviour, IInteractable
     [SerializeField] int amountNeeded;
     [SerializeField] ItemDataBase itemDatabase;
     [SerializeField] GameObject spriteIcon;
-    [SerializeField] TextMeshProUGUI tutorialText, tutorialText2;
     [SerializeField] TutorialDoor door;
+
     bool isActive;
     bool itemGenerated;
     int currentAmount;
@@ -46,7 +46,6 @@ public class ReciclerTutorial : MonoBehaviour, IInteractable
     public void ActivateRecicler()
     {
         isActive = true;
-        tutorialText.gameObject.SetActive( true);
         spriteIcon.SetActive(isActive);
     }
 
@@ -65,16 +64,11 @@ public class ReciclerTutorial : MonoBehaviour, IInteractable
         RecicleCounter.instance.RemoveRecicleAmount();
         if (itemGenerated)
         {
-            tutorialText2.gameObject.SetActive(false);
             door.OpenDoor();
             Instantiate(itemDatabase.GetItem(itemToExtraGenerate).itemPrefab, transform.position, Quaternion.identity);
         }
         else
         {
-            tutorialText.gameObject.SetActive(false);
-            tutorialText2.gameObject.SetActive(true);
-            
-
             itemGenerated = true;
             Instantiate(itemDatabase.GetItem(itemToGenerate).itemPrefab, transform.position, Quaternion.identity);
         }

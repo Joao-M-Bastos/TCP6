@@ -6,8 +6,6 @@ using UnityEngine.Events;
 
 public class Tutorial_RecicleLever : MonoBehaviour, IInteractable
 {
-    [SerializeField] TextMeshProUGUI tutorialText;
-
     [SerializeField] protected ReciclerTutorial recicler;
     protected Animator animator;
 
@@ -29,7 +27,6 @@ public class Tutorial_RecicleLever : MonoBehaviour, IInteractable
         {
             animator.SetTrigger("Open");
             interactionSuccess = true;
-            tutorialText.enabled = false;
             recicler.ActivateRecicler();
         }
 

@@ -13,14 +13,10 @@ public class Recicler : MonoBehaviour, IInteractable
     [SerializeField] ItemDataBase itemDatabase;
     [SerializeField] GameObject spriteIcon;
     [SerializeField] DialogueTrigger goodDialogue, badDialogue;
+
     bool isActive;
     bool itemGenerated;
     int currentAmount;
-
-    Transform playerTransform;
-    [SerializeField] TextMeshProUGUI dicasText;
-
-    [SerializeField] string[] tips;
 
     public bool IsActive => isActive;
 
@@ -115,25 +111,4 @@ public class Recicler : MonoBehaviour, IInteractable
         hasInteracted = !isActive;
     }
 
-    private void Update()
-    {
-        if (playerTransform != null)
-        {
-            if (Vector3.Distance(this.transform.position, playerTransform.transform.position) < 5)
-                dicasText.gameObject.SetActive(true);
-            else
-            {
-                playerTransform = null;
-                dicasText.gameObject.SetActive(false);
-            }
-
-        }
-    }
-
-    public void SetText(int id)
-    {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        dicasText.gameObject.SetActive(true);
-        dicasText.text = tips[id];
-    }
 }
