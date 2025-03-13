@@ -8,7 +8,7 @@ public class RightHand : MonoBehaviour
     BaseWeapon currentWeapon;
     [SerializeField] WeaponDataBase weaponDataBase;
 
-    float extraDamage;
+    [SerializeField] float extraDamage;
 
     GameObject currentWeaponObj;
 

@@ -14,6 +14,8 @@ public class ReciclerTutorial : MonoBehaviour, IInteractable
     [SerializeField] GameObject spriteIcon;
     [SerializeField] TutorialDoor door;
 
+    [SerializeField] GameObject canvasObj;
+
     bool isActive;
     bool itemGenerated;
     int currentAmount;
@@ -46,6 +48,7 @@ public class ReciclerTutorial : MonoBehaviour, IInteractable
     public void ActivateRecicler()
     {
         isActive = true;
+        canvasObj.SetActive(true);
         spriteIcon.SetActive(isActive);
     }
 
@@ -62,6 +65,9 @@ public class ReciclerTutorial : MonoBehaviour, IInteractable
     private void GenerateItem()
     {
         RecicleCounter.instance.RemoveRecicleAmount();
+
+        
+
         if (itemGenerated)
         {
             door.OpenDoor();
@@ -89,6 +95,7 @@ public class ReciclerTutorial : MonoBehaviour, IInteractable
                     AddItem(itemDatabase.GetItem(materialID), out bool consumed);
                     if (consumed)
                     {
+                        canvasObj.SetActive(false);
                         interactionSuccess = true;
                         invSlots[0].RemoveToStack(1);
                         playerInventory.InventorySystem.OnSlotChanged(invSlots[0]);

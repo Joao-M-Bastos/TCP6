@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class Tutorial_RecicleLever : MonoBehaviour, IInteractable
 {
+    [SerializeField] protected GameObject canvasObj;
     [SerializeField] protected ReciclerTutorial recicler;
     protected Animator animator;
 
@@ -26,6 +27,7 @@ public class Tutorial_RecicleLever : MonoBehaviour, IInteractable
         if (!recicler.IsActive)
         {
             animator.SetTrigger("Open");
+            canvasObj.SetActive(false);
             interactionSuccess = true;
             recicler.ActivateRecicler();
         }

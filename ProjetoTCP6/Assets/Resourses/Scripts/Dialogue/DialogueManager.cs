@@ -26,6 +26,8 @@ public class DialogueManager : MonoBehaviour
 
     bool inDialog;
 
+    public bool InDialog => inDialog;
+
     [SerializeField] CameraManager cameraManager;
 
     public delegate void DialogueEnd();
@@ -57,11 +59,6 @@ public class DialogueManager : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            //StartDialogue(DialogueEvents[0].Dialogues);
-        }
-
         if(Input.GetKeyDown(KeyCode.Space))
         {
             TryDisplayNextSentence();
