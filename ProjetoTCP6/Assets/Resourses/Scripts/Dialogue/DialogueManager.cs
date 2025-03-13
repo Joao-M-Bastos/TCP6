@@ -26,6 +26,8 @@ public class DialogueManager : MonoBehaviour
 
     bool inDialog;
 
+    [SerializeField] CameraManager cameraManager;
+
     public delegate void DialogueEnd();
     public static DialogueEnd dialogueEnd;
 
@@ -66,8 +68,15 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(List<Dialogue> dialogues)
+    public void StartDialogue(int dialogueID, int cameraWork)
     {
+        StartDialogue(DialogueEvents[dialogueID].Dialogues, cameraWork);
+    }
+
+    public void StartDialogue(List<Dialogue> dialogues, int cameraWork)
+    {
+        cameraManager.SwichCamera(cameraWork);
+
         dialoguesQueue.Clear();
         sentencesQueue.Clear();
 
@@ -168,6 +177,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
+        cameraManager.SwichCamera(0);
         dialogueEnd?.Invoke();
         dialogueBoxAnimator.SetBool("IsOpen", false);
         inDialog = false;

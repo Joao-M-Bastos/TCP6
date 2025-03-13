@@ -5,9 +5,10 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour
 {
     [SerializeField] private int dialogueEventIndex;
+    [SerializeField] private int cameraWork;
 
     public void TriggerDialogueEvent()
     {
-        DialogueManager.Instance.StartDialogue(DialogueManager.Instance.DialogueEvents[dialogueEventIndex].Dialogues);
+        DialogueManager.Instance.StartDialogue(dialogueEventIndex, cameraWork);
     }
 }

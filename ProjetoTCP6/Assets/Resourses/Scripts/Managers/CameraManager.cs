@@ -1,22 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CameraManager : MonoBehaviour
 {
-    [SerializeField] Transform playerTranform;
-    // Start is called before the first frame update
-    void Start()
+    public CinemachineVirtualCamera[] cameras;
+
+    public CinemachineVirtualCamera starterCamera;
+    private CinemachineVirtualCamera currentCamera;
+
+    private void Start()
     {
-        playerTranform = GameObject.FindGameObjectWithTag("Player").transform;
+        SwichCamera(starterCamera);
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    public void SwichCamera(int newCameraID)
     {
-        this.transform.position =  playerTranform.position;
+        currentCamera = cameras[newCameraID];
 
-        if(Input.GetKeyDown(KeyCode.Escape))
-            Application.Quit();
+        foreach (var cam in cameras)
+        {
+            cam.Priority = 10;
+
+            if (cam == currentCamera)
+                cam.Priority = 20;
+        }
+    }
+
+    public void SwichCamera(CinemachineVirtualCamera newCamera)
+    {
+        currentCamera = newCamera;
+
+        foreach (var cam in cameras)
+        {
+            cam.Priority = 10;
+
+            if (cam == currentCamera)
+                cam.Priority = 20;
+        }
     }
 }

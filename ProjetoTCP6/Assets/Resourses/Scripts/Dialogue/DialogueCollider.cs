@@ -12,7 +12,7 @@ public class DialogueCollider : MonoBehaviour
         if (other.CompareTag("Player") && !hasCollided){
             GetComponent<DialogueTrigger>().TriggerDialogueEvent();
             hasCollided = true;
-            if(wait.TryGetComponent(out IWaitForDialogue waitScript))
+            if(wait != null && wait.TryGetComponent(out IWaitForDialogue waitScript))
                 waitScript.WaitForDialogue();
         }
     }
