@@ -8,7 +8,7 @@ public class RightHand : MonoBehaviour
     BaseWeapon currentWeapon;
     [SerializeField] WeaponDataBase weaponDataBase;
 
-    [SerializeField] float extraDamage;
+    [SerializeField] float damageBuff;
 
     GameObject currentWeaponObj;
 
@@ -27,12 +27,12 @@ public class RightHand : MonoBehaviour
     void Awake()
     {
         SetSword(0);
-        extraDamage = 0;
+        damageBuff = 0;
     }
 
     public void GlassUsed()
     {
-        extraDamage += 0.5f;
+        damageBuff += 0.5f;
     }
 
     public void SetSword(int id)
@@ -70,7 +70,17 @@ public class RightHand : MonoBehaviour
     public void ActivateWeapon(Animator playerAnim)
     {
         currentWeapon.ActivateWeapon(playerAnim);
-        currentWeapon.SetExtraDamage(extraDamage);
+        currentWeapon.SetExtraDamage(damageBuff);
+    }
+
+    public void Attack(Animator playerAnim, out bool attacked) { 
+        attacked = false;
+
+        if (!IsWeaponActive())
+        {
+            attacked = true;
+            ActivateWeapon(playerAnim);
+        }
     }
 
     public void DeactivateWeapon()

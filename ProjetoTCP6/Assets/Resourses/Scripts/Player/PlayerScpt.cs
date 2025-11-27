@@ -92,8 +92,14 @@ public class PlayerScpt : MonoBehaviour
     {
         currentLife = baseLife;
         animator.SetBool("Dead", false);
-        animator.ResetTrigger("GountletAttack");
-        animator.ResetTrigger("SpearAttack");
+
+        for (int i = 0; i < animator.parameterCount; i++)
+        {
+            AnimatorControllerParameter p = animator.GetParameter(i);
+            if (p.type == AnimatorControllerParameterType.Trigger)
+                animator.ResetTrigger(p.name);
+        }
+
         onPlayerUpdateLife?.Invoke();
     }
     #endregion
@@ -123,6 +129,13 @@ public class PlayerScpt : MonoBehaviour
     #endregion
 
     #region Weapon
+    public void Attack(out bool _attacked)
+    {
+        _attacked = false;
+        RightHand.Attack(animator, out bool attacked);
+        _attacked = attacked;
+    }
+
     public void DeactivateWeapon()
     {
         rightHand.DeactivateWeapon();
@@ -152,6 +165,51 @@ public class PlayerScpt : MonoBehaviour
     public void ResetDashTime()
     {
         currentDash = dashCooldown;
+    }
+
+    public void Walk()
+    {
+        Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+
+        if (direction.magnitude != 0 && !walkingSound.isPlaying)
+            walkingSound.Play();
+        else if (direction.magnitude == 0 && walkingSound.isPlaying)
+            walkingSound.Stop();
+
+        PlayerRB.AddForce(direction * Time.deltaTime * Aceleration, ForceMode.VelocityChange);
+
+        if (CanDash() && Input.GetKey(KeyCode.Space))
+        {
+            ResetDashTime();
+            PlayerRB.AddForce(direction * Aceleration * 2f, ForceMode.Impulse);
+        }
+
+        if (direction == Vector3.zero || PlayerRB.velocity.magnitude > MaxSpeed)
+            PlayerRB.velocity *= 0.8f;
+    }
+
+    public void LookAtMouse()
+    {
+        //For Orthographic
+        //Vector3 input = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //Vector3 playerPosition = transform.position;
+
+        //transform.LookAt(new Vector3(input.x, playerPosition.y, input.z + 11.5f));
+        
+        //For Perspective
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        Plane plane = new Plane(Vector3.up, transform.position);
+
+        if (plane.Raycast(ray, out float distance))
+        {
+            Vector3 hitPoint = ray.GetPoint(distance);
+
+            Vector3 lookPos = hitPoint;
+            lookPos.y = transform.position.y;
+
+            transform.LookAt(lookPos);
+        }
     }
 
     #endregion
