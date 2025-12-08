@@ -63,7 +63,5 @@ public class CanvasManager : MonoBehaviour
         WinCanvas.SetActive(currentState == CanvasStates.Win);
 
         DialogueCanvas.SetActive(currentState == CanvasStates.Dialogue);
-
-        InventoryCanva.SetActive(InGameCanvas.activeSelf);
     }
 }
